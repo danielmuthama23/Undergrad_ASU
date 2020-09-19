@@ -13,7 +13,7 @@ public class Lab3 {
         Scanner input = new Scanner(System.in);
 
         // declare variables for hw, midterm and final exam grades
-        int homeworkGrade = 0, midtermExamGrade = 0, finalExamGrade = 0;
+        double homeworkGrade = 0, midtermExamGrade = 0, finalExamGrade = 0;
 
         // declare a loop control variable
         int i = 0;
@@ -23,7 +23,7 @@ public class Lab3 {
             if (i == 0) {
                 // read user input for question
                 System.out.print("Enter your HOMEWORK grade: ");
-                homeworkGrade = input.nextInt();
+                homeworkGrade = input.nextDouble();
             
                 // check if the input is within range.
                 // if not allow user to retry
@@ -34,7 +34,7 @@ public class Lab3 {
                 }
             } else if (i == 1) {
                 System.out.print("Enter your MIDTERM EXAM grade: ");
-                midtermExamGrade = input.nextInt();
+                midtermExamGrade = input.nextDouble();
 
                 if (midtermExamGrade < 0 || midtermExamGrade > 100) {
                     System.out.println("Your MIDTERM EXAM grade must be in the range [0,100]. Please try again.");
@@ -43,7 +43,7 @@ public class Lab3 {
                 }
             } else if (i == 2) {
                 System.out.print("Enter your FINAL EXAM grade: ");
-                finalExamGrade = input.nextInt();
+                finalExamGrade = input.nextDouble();
 
                 if (finalExamGrade < 0 || finalExamGrade > 200) {
                     System.out.println("Your FINAL EXAM grade must be in the range [0,200]. Please try again.");
