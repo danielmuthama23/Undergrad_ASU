@@ -1,14 +1,14 @@
-import java.util.Scanner;
-
 /*
 CSE 110 83315 / T 1:30-2:20 PM
 Assignment: Assignment 03
 Author: Tyler Fichiera 1218959911
 Description: Source for assignment 3
 */
+import java.util.Scanner;
+
 public class Assignment03 {
     public static void main(String[] args) {
-        // declare and instantiate a Scanner
+        // Declare and instantiate a Scanner
         Scanner input = new Scanner(System.in);
 
         System.out.print("Current Shares  : ");
@@ -35,6 +35,7 @@ public class Assignment03 {
         
         int totalSellValue = perShareSellValue * currentShares;
 
+        // Logic for determining whether to Buy, Sell, or Hold
         if (totalBuyValue > 10 || totalSellValue > 10) {
             if (totalBuyValue > totalSellValue) {
                 System.out.println("Buy " + numberOfSharesToBuy + " shares");
