@@ -1,21 +1,21 @@
 public class _Test {
     public static void main(String[] args) {
-        int a = 1;
-        int b = 8;
-
-        while (a < b) {
-            a = a + 2;
-            b = b - 2;
-            System.out.print("buz");
+        int num1 = 0;
+        int num2 = 3;
+        while ((num2 != 0) && (num1 / num2) >= 0) {
+            num1 += 2;
+            num2--;
         }
+        System.out.println(num1 + " " + num2);
 
-        System.out.print(a);
-
-        String c = "a banana";
-        String d = "banana";
-
-        System.out.println(d.compareTo(c));
-
-        // char e = '\n';
+        int i = 1;
+        int num = 1;
+        while (i <= 3) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(num + " ");
+                num *= 2;
+            }
+            i++;
+        }
     }
 }
