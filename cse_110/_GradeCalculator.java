@@ -40,8 +40,6 @@ public class _GradeCalculator {
 
         double gradePercent = quizPercent + labPercent + assignmentPercent + examPercent;
 
-        System.out.println(gradePercent);
-
         System.out.println("Quizzes (15%)     : " + quizPercent);
         System.out.println("Labs (30%)        : " + labPercent);
         System.out.println("Assignments (25%) : " + assignmentPercent);
