@@ -5,6 +5,9 @@ SPECIFICATION: Class for Program object
 FOR: CSE 110 Lab #7
 TIME SPENT: 30 mins
 */
+
+package Lab7;
+
 import java.time.LocalDateTime;
 
 public class Program {

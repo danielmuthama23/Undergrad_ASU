@@ -5,6 +5,9 @@ SPECIFICATION: Test Driver for Lab 7
 FOR: CSE 110 Lab #7
 TIME SPENT: 30 mins
 */
+
+package Lab7;
+
 import java.util.Scanner;
 
 public class Lab7 {
