@@ -1,4 +1,7 @@
 // !!! MAKE NO CHANGES TO THIS FILE !!!
+
+package Assignment07;
+
 import java.util.Scanner;
 public class Assignment07 {
    private static Scanner scnr = new Scanner(System.in);

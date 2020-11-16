@@ -5,6 +5,8 @@ Author: Tyler Fichiera 1218959911
 Description: Source for Monster class
 */
 
+package Assignment07;
+
 public class Monster {
     // declare private vars
     private String name;

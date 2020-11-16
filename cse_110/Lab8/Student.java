@@ -6,6 +6,8 @@ FOR: CSE 110 Lab #8
 TIME SPENT: 30 mins
 */
 
+package Lab8;
+
 public class Student {
     // init private vars
     private String fullName, asuID;

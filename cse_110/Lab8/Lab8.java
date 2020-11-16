@@ -5,6 +5,8 @@
 // NOT touch anything in this file.
 //-----------------------------------------------------------*/
 
+package Lab8;
+
 public class Lab8 {
     public static void main(String[] args) {
         String sFullName, sAsuID;
