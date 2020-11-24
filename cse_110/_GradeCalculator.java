@@ -27,16 +27,10 @@ public class _GradeCalculator {
         System.out.print("Total exam points      : ");
         double totalExamPoints = input.nextDouble();
 
-        double totalPercents = 105;
-        // if (totalQuizPoints > 0) totalPercents += 15;
-        // if (totalLabPoints > 0) totalPercents += 30;
-        // if (totalAssignmentPoints > 0) totalPercents += 25;
-        // if (totalExamPoints > 0) totalPercents += 35;
-
-        double quizPercent = (yourQuizPoints / totalQuizPoints) * (15 / totalPercents) * 100;
-        double labPercent = (yourLabPoints / totalLabPoints) * (30 / totalPercents) * 100;
-        double assignmentPercent = (yourAssignmentPoints / totalAssignmentPoints) * (25 / totalPercents) * 100;
-        double examPercent = (yourExamPoints / totalExamPoints) * (35 / totalPercents) * 100;
+        double quizPercent = (yourQuizPoints / totalQuizPoints) * 15;
+        double labPercent = (yourLabPoints / totalLabPoints) * 30;
+        double assignmentPercent = (yourAssignmentPoints / totalAssignmentPoints) * 25;
+        double examPercent = (yourExamPoints / totalExamPoints) * 35;
 
         double gradePercent = quizPercent + labPercent + assignmentPercent + examPercent;
 
