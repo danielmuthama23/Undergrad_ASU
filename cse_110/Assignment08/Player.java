@@ -5,7 +5,7 @@ Author: Tyler Fichiera 1218959911
 Description: Source for Player class
 */
 
-package Assignment07;
+package Assignment08;
 
 public class Player {
     // init private variables

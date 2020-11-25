@@ -5,7 +5,7 @@ Author: Tyler Fichiera 1218959911
 Description: Source for Roster class
 */
 
-package Assignment07;
+package Assignment08;
 
 import java.util.ArrayList;
 import java.io.BufferedReader;

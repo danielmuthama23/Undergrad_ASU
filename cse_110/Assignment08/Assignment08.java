@@ -2,7 +2,7 @@
 import java.io.*;
 import java.util.Scanner;
 
-package Assignment07;
+package Assignment08;
 
 class Assignment08 {
   static Scanner scnr = new Scanner(System.in);
