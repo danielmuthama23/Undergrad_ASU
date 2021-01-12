@@ -1,0 +1,4 @@
+The maximum integer is 0
+The count of even integers in the sequence is 1
+The smallest odd integer in the sequence is 0
+The sum of negative integers is 0

@@ -1,0 +1,4 @@
+The maximum integer is 679
+The count of even integers in the sequence is 4
+The smallest odd integer in the sequence is -45
+The sum of negative integers is -138
