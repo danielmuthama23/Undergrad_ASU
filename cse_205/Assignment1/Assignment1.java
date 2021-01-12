@@ -5,6 +5,7 @@
 //      Lecture: T/Th - 4:30
 //  Description: This class reads an integer from a keyboard and prints it out
 //               along with other messages.
+package Assignment1;
 
 import java.util.Scanner;  // use the Scanner class located in the "java.util" directory
 
