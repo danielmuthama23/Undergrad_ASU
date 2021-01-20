@@ -1,0 +1,31 @@
+Choice		Action
+------		------
+A		Add Department
+D		Display Department
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter the Department information:
+Enter its name:
+Enter its number of members:
+Enter its university:
+Enter its faculty's first name:
+Enter its faculty's last name:
+Enter its faculty's academic level:
+What action would you like to perform?
+
+Department Name:		Electrical Engineering
+Number Of Members:	40
+University:		Arizona State University
+Faculty:		Music,Sophie(Senior)
+
+What action would you like to perform?
+Choice		Action
+------		------
+A		Add Department
+D		Display Department
+Q		Quit
+?		Display Help
+
+What action would you like to perform?

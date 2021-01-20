@@ -1,0 +1,53 @@
+Choice		Action
+------		------
+A		Add Department
+D		Display Department
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter the Department information:
+Enter its name:
+Enter its number of members:
+Enter its university:
+Enter its faculty's first name:
+Enter its faculty's last name:
+Enter its faculty's academic level:
+What action would you like to perform?
+
+Department Name:		Mathematics
+Number Of Members:	54
+University:		Northern Arizona University
+Faculty:		Fields,Jim(Senior)
+
+What action would you like to perform?
+Please enter the Department information:
+Enter its name:
+Enter its number of members:
+Enter its university:
+Enter its faculty's first name:
+Enter its faculty's last name:
+Enter its faculty's academic level:
+What action would you like to perform?
+
+Department Name:		Arts and Design
+Number Of Members:	36
+University:		University of Southern California
+Faculty:		Tables,Pete(Junior)
+
+What action would you like to perform?
+Please enter the Department information:
+Enter its name:
+Enter its number of members:
+Enter its university:
+Enter its faculty's first name:
+Enter its faculty's last name:
+Enter its faculty's academic level:
+What action would you like to perform?
+
+Department Name:		Computer Science
+Number Of Members:	26
+University:		Oregon State University
+Faculty:		Reader,Ann(Tenure)
+
+What action would you like to perform?

@@ -1,0 +1,48 @@
+Choice		Action
+------		------
+A		Add Department
+D		Display Department
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Choice		Action
+------		------
+A		Add Department
+D		Display Department
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter the Department information:
+Enter its name:
+Enter its number of members:
+Enter its university:
+Enter its faculty's first name:
+Enter its faculty's last name:
+Enter its faculty's academic level:
+What action would you like to perform?
+
+Department Name:		Gaming Club
+Number Of Members:	15
+University:		Arizona State University
+Faculty:		Tempe,Alice(Senior)
+
+What action would you like to perform?
+Please enter the Department information:
+Enter its name:
+Enter its number of members:
+Enter its university:
+Enter its faculty's first name:
+Enter its faculty's last name:
+Enter its faculty's academic level:
+What action would you like to perform?
+
+Department Name:		Robotic Club
+Number Of Members:	25
+University:		University of Arizona
+Faculty:		Jobs,Tom(Junior)
+
+What action would you like to perform?
+Unknown action
+What action would you like to perform?

@@ -1,0 +1,38 @@
+Choice		Action
+------		------
+A		Add Department
+D		Display Department
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter the Department information:
+Enter its name:
+Enter its number of members:
+Enter its university:
+Enter its faculty's first name:
+Enter its faculty's last name:
+Enter its faculty's academic level:
+What action would you like to perform?
+
+Department Name:		Computer Science
+Number Of Members:	54
+University:		Arizona State University
+Faculty:		Water,Amy(Senior)
+
+What action would you like to perform?
+Please enter the Department information:
+Enter its name:
+Enter its number of members:
+Enter its university:
+Enter its faculty's first name:
+Enter its faculty's last name:
+Enter its faculty's academic level:
+What action would you like to perform?
+
+Department Name:		English
+Number Of Members:	43
+University:		University of Arizona
+Faculty:		Walker,Meg(Tenure)
+
+What action would you like to perform?
