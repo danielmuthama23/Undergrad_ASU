@@ -1,0 +1,50 @@
+Choice		Action
+------		------
+A		Add Student
+C		Compute Tuition
+D		Count Certain Students
+L		List Students
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter a student information to add:
+What action would you like to perform?
+
+UnderGrad:
+In-State
+First name:		Barack
+Last name:		Obama
+Student ID:		200005
+Credits:		8
+Rate:			$400.00
+Tuition:		$0.00
+Student Program Fee:	$12.00
+
+What action would you like to perform?
+tuition computed
+What action would you like to perform?
+Please enter a student information to add:
+What action would you like to perform?
+
+UnderGrad:
+In-State
+First name:		Barack
+Last name:		Obama
+Student ID:		200005
+Credits:		8
+Rate:			$400.00
+Tuition:		$2,812.00
+Student Program Fee:	$12.00
+
+
+Graduate Student:
+First name:		Bill
+Last name:		Clinton
+Student ID:		000002
+Credits:		6
+Rate:			$450.00
+Tuition:		$0.00
+Grad Fee:		$12.00
+
+What action would you like to perform?

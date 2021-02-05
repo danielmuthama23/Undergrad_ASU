@@ -1,0 +1,94 @@
+Choice		Action
+------		------
+A		Add Student
+C		Compute Tuition
+D		Count Certain Students
+L		List Students
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter a student information to add:
+What action would you like to perform?
+Please enter a student information to add:
+What action would you like to perform?
+Please enter a student information to add:
+What action would you like to perform?
+Please enter a student information to add:
+What action would you like to perform?
+Please enter a student information to add:
+What action would you like to perform?
+tuition computed
+What action would you like to perform?
+Please enter a number of credits:
+The number of students who are taking 12 credits is: 2
+What action would you like to perform?
+Please enter a number of credits:
+The number of students who are taking 15 credits is: 1
+What action would you like to perform?
+Please enter a number of credits:
+The number of students who are taking 8 credits is: 0
+What action would you like to perform?
+
+UnderGrad:
+Out-Of-State
+First name:		Grace
+Last name:		Hopper
+Student ID:		000121
+Credits:		12
+Rate:			$844.00
+Tuition:		$10,143.00
+Student Program Fee:	$15.00
+
+
+UnderGrad:
+In-State
+First name:		Ada
+Last name:		Lovelace
+Student ID:		002301
+Credits:		15
+Rate:			$844.00
+Tuition:		$5,920.00
+Student Program Fee:	$12.00
+
+
+Graduate Student:
+First name:		Anita
+Last name:		Borg
+Student ID:		000021
+Credits:		6
+Rate:			$450.00
+Tuition:		$2,712.00
+Grad Fee:		$12.00
+
+
+UnderGrad:
+Out-Of-State
+First name:		Bill
+Last name:		Gate
+Student ID:		000341
+Credits:		12
+Rate:			$844.00
+Tuition:		$10,143.00
+Student Program Fee:	$15.00
+
+
+UnderGrad:
+Out-Of-State
+First name:		Janet
+Last name:		Abbate
+Student ID:		000001
+Credits:		6
+Rate:			$844.00
+Tuition:		$5,079.00
+Student Program Fee:	$15.00
+
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?

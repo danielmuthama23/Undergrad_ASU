@@ -1,0 +1,11 @@
+A
+Graduate/Bill/Clinton/000002/6/450.00/10.00
+?
+A
+UnderGrad/Barack/Obama/200005/8/400.00/InState/15.00
+A
+UnderGrad/George/Bush/000001/6/844.00/OutState/12.00
+L
+C
+L
+Q
