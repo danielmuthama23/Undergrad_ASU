@@ -1,0 +1,43 @@
+A
+Computer Science
+57
+Arizona State University
+John
+Smith
+Assistant Professor
+A
+Electrical Engineering
+67
+Arizona State University
+Brian
+Skromme
+Professor
+A
+English
+43
+University of Arizona
+Meg
+Walker
+Associate Professor
+A
+Electrical Engineering
+40
+Arizona State University
+Sophie
+Music
+Senior Lecturer
+L
+D
+Electrical Engineering
+Arizona State University
+D
+Mechanical Engineering
+Arizona State University
+D
+English
+University of Arizona
+E
+John
+Smith
+Assistant Professor
+Q

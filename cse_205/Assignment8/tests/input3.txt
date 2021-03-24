@@ -1,0 +1,61 @@
+A
+Electrical Engineering
+67
+Arizona State University
+Brian
+Skromme
+Professor
+A
+Computer Science
+57
+Arizona State University
+John
+Smith
+Assistant Professor
+A
+English
+43
+University of Arizona
+Meg
+Walker
+Associate Professor
+A
+Finance
+59
+University of Texas at Austin
+John
+Griffin
+Professor
+A
+Computer Science
+45
+University of Texas at Austin
+Anna
+Chaney
+Assistant Professor
+A
+Electrical Engineering
+40
+Arizona State University
+Sophie
+Music
+Senior Lecturer
+L
+D
+Computer Science
+University of Texas at Austin
+D
+Computer Science
+University of Washington
+N
+L
+O
+L
+U
+ASUCSE205.txt
+ASU CSE205 Spring 2021 Assignment #8
+V
+ASUCSE205.txt
+V
+asucse.txt
+Q

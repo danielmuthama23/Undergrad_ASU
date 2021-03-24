@@ -1,0 +1,66 @@
+A
+Finance
+59
+University of Texas at Austin
+John
+Griffin
+Professor
+A
+Accounting
+67
+Arizona State University
+Brian
+Skromme
+Professor
+A
+Computer Science
+57
+Arizona State University
+John
+Smith
+Assistant Professor
+A
+English
+43
+University of Arizona
+Meg
+Walker
+Associate Professor
+A
+Biology
+76
+University of Texas at Austin
+Joe
+Dow
+Lecturer
+A
+Electrical Engineering
+40
+Arizona State University
+Sophie
+Music
+Senior Lecturer
+W
+DepartmentFiles.dat
+X
+DepartmentFiles.dat
+N
+L
+R
+Computer Science
+Arizona State University
+R
+Chemistry
+Arizona State University
+P
+L
+E
+Meg
+Walker
+Associate Professor
+E
+Joe
+Dow
+Assistant Professor
+T
+Q

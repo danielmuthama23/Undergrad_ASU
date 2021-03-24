@@ -1,0 +1,224 @@
+Choice		Action
+------		------
+A		Add a department
+C		Create a DeptManagement
+D		Search a department
+E		Search a faculty
+L		List departments
+N		Sort by department names
+O		Sort by department faculty numbers
+P		Sort by current faculty name
+Q		Quit
+R		Remove a department
+T		Close DeptManagement
+U		Write strings to a text file
+V		Read strings from a text file
+W		Serialize DeptManagement to a data file
+X		Deserialize DeptManagement from a data file
+?		Display Help
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
+
+Dept. Name:		Electrical Engineering
+University:		Arizona State University
+# of Members:	67
+Faculty:		Brian Skromme, Professor
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
+
+Dept. Name:		English
+University:		Arizona State University
+# of Members:	40
+Faculty:		Sophie Music, Senior Lecturer
+
+
+What action would you like to perform?
+sorted by department names
+
+What action would you like to perform?
+
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		Electrical Engineering
+University:		Arizona State University
+# of Members:	67
+Faculty:		Brian Skromme, Professor
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
+
+Dept. Name:		English
+University:		Arizona State University
+# of Members:	40
+Faculty:		Sophie Music, Senior Lecturer
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
+
+
+What action would you like to perform?
+sorted by faculty numbers
+
+What action would you like to perform?
+
+
+Dept. Name:		English
+University:		Arizona State University
+# of Members:	40
+Faculty:		Sophie Music, Senior Lecturer
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
+
+Dept. Name:		Electrical Engineering
+University:		Arizona State University
+# of Members:	67
+Faculty:		Brian Skromme, Professor
+
+
+What action would you like to perform?
+sorted by current faculty name
+
+What action would you like to perform?
+
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
+
+Dept. Name:		English
+University:		Arizona State University
+# of Members:	40
+Faculty:		Sophie Music, Senior Lecturer
+
+Dept. Name:		Electrical Engineering
+University:		Arizona State University
+# of Members:	67
+Faculty:		Brian Skromme, Professor
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
+
+
+What action would you like to perform?
+Please enter the department name to remove:
+Please enter the university name to remove:
+Electrical Engineering at Arizona State University is removed
+
+What action would you like to perform?
+
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
+
+Dept. Name:		English
+University:		Arizona State University
+# of Members:	40
+Faculty:		Sophie Music, Senior Lecturer
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
+
+
+What action would you like to perform?
