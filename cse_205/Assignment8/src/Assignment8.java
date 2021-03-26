@@ -5,10 +5,9 @@
 //  Description: The Assignment 8 class displays a menu of choices to a user
 //               and performs the chosen task. It will keep asking a user to
 //               enter the next choice until the choice of 'Q' (Quit) is
-//               entered. //---- is where you should add your own code
+//               entered.
 
 import java.io.*;
-import java.util.Scanner;
 
 public class Assignment8 {
 	public static void main(String[] args) {
@@ -21,13 +20,13 @@ public class Assignment8 {
 
 		String line;
 		String filename;
-		boolean operation = false;
-		int operation2 = 0;
+		// boolean operation = false;
+		// int operation2 = 0;
 
 		// create a DeptManagement object. This is used throughout this class.
 		DeptManagement deptManage1 = new DeptManagement();
 
-		File file;
+		// File file;
 
 		try {
 			// print out the menu
@@ -88,7 +87,7 @@ public class Assignment8 {
 							System.out.print("Please enter the university name to search:\n");
 							university = stdin.readLine().trim();
 
-							if (deptManage1.deptExists(deptName, university) > 0) {
+							if (deptManage1.deptExists(deptName, university) >= 0) {
 								System.out.print(deptName + " at " + university + " is found\n");
 							} else {
 								System.out.print(deptName + " at " + university + " is NOT found\n");
@@ -103,59 +102,49 @@ public class Assignment8 {
 							System.out.print("Please enter the faculty academic level to search:\n");
 							academicLevel = stdin.readLine().trim();
 
-							if (deptManage1.facultyExists(firstName, lastName, academicLevel) > 0) {
+							if (deptManage1.facultyExists(firstName, lastName, academicLevel) >= 0) {
 								System.out.print("Faculty: " + firstName + " " + lastName + ", " + academicLevel + " is found\n");
 							} else {
 								System.out.print("Faculty: " + firstName + " " + lastName + ", " + academicLevel + " is NOT found\n");
 							}
 							break;
 						case 'L':
-							//List departments
+							// List departments
 							System.out.print(deptManage1.listDepartments());
 							break;
 						case 'N':
-	/************************************************************************************
-	***  Complete the follwing statement. Sort by department names in alphabetical order
-	***********************************************************************************/
-							//----
+							// sort departments alphabetically
+							Sorts.sort(deptManage1.deptList, new DeptNameComparator());
 							System.out.print("sorted by department names\n");
 							break;
-
 						case 'O':
-	/************************************************************************************
-	***  Complete the follwing statement. Sort by faculty numbers in increasing order
-	***********************************************************************************/
-							//----
+							// sort by faculty numbers in increasing order
+							Sorts.sort(deptManage1.deptList, new FacultyNumberComparator());
 							System.out.print("sorted by faculty numbers\n");
 							break;
 						case 'P':
-	/************************************************************************************
-	***  Complete the follwing statement. Sort the current faculty in alphabetical order
-	***********************************************************************************/
-							//----
+							// sort by current faculty in alphabetical order
+							Sorts.sort(deptManage1.deptList, new DeptFacultyComparator());
 							System.out.print("sorted by current faculty name\n");
 							break;
 						case 'Q':
-							//Quit
+							// Quit
 							break;
 						case 'R':
-							//Remove a department
+							// Remove a department
 							System.out.print("Please enter the department name to remove:\n");
 							deptName = stdin.readLine().trim();
 							System.out.print("Please enter the university name to remove:\n");
 							university = stdin.readLine().trim();
-	/************************************************************************************
-	***  Complete the follwing statement, if the department with above name and university is found
-	remove it. Show the relevant info. accordingly.
-	***********************************************************************************/
-							//----
-							if (operation == true)
+
+							if (deptManage1.removeDepartment(deptName, university)) {
 								System.out.print(deptName + " at " + university + " is removed\n");
-							else
+							} else {
 								System.out.print(deptName + " at " + university + " is NOT removed\n");
+							}
 							break;
 						case 'T':
-							//Close DeptManagement
+							// Close DeptManagement
 							deptManage1.closeDeptManagement();
 							System.out.print("Department management system closed\n");
 							break;
@@ -163,70 +152,72 @@ public class Assignment8 {
 							// Write Text to a File
 							System.out.print("Please enter a file name that we will write to:\n");
 							filename = stdin.readLine().trim();
+
+							System.out.print("Please enter a string to write inside the file:\n");
+							String fileContent = stdin.readLine().trim();
+
 							try {
-								System.out.println();
-							} catch () {
+								FileWriter writer = new FileWriter(filename);
+								writer.write(fileContent);
+								writer.close();
+							} catch (Exception e) {
 								System.out.print("Write string inside the file error\n");
 							}
 							break;
 						case 'V':
-							//Read Text from a File
+							// Read Text from a File
 							System.out.print("Please enter a file name which we will read from:\n");
 							filename = stdin.readLine().trim();
 							try {
-	/************************************************************************************
-	***  Complete the follwing statement, read from above text file
-	***********************************************************************************/
-								//----
-							}
-							catch () {
+								BufferedReader br = new BufferedReader(new FileReader(filename)); 
+								System.out.print("The first line of the file is:\n" + br.readLine() + "\n");
+								br.close();
+							} catch (FileNotFoundException e) {
 								System.out.print(filename + " not found error\n");
-							}
-							catch () {
+							} catch (Exception e) {
 								System.out.print("Read string from the file error\n");
 							}
 							break;
 						case 'W':
-							//Serialize DeptManagement to a File
+							// Serialize DeptManagement to a File
 							System.out.print("Please enter a file name which we will write to:\n");
 							filename = stdin.readLine().trim();
+
 							try {
-	/************************************************************************************
-	***  Complete the follwing statement, write object deptManage1 inside the data file
-	***********************************************************************************/
-								//----
-							}
-							catch () {
+								FileOutputStream fos = new FileOutputStream(filename);
+         						
+								ObjectOutputStream out = new ObjectOutputStream(fos);
+								out.writeObject("Please enter a file name to write:\n" + deptManage1);
+								out.close();
+
+								fos.close();
+							} catch (FileNotFoundException e) {
 								System.out.print("Not serializable exception\n");
-							}
-							catch () {
+							} catch (IOException e) {
 								System.out.print("Data file written exception\n");
 							}
 							break;
 						case 'X':
-							//Deserialize DeptManagement from a File
+							// Deserialize DeptManagement from a File
 							System.out.print("Please enter a file name which we will read from:\n");
 							filename = stdin.readLine().trim();
-							try {
-	/************************************************************************************
-	***  Complete the follwing statement, read object from the data file and save the object
-	as deptManage1
-	***********************************************************************************/
-							//----
-							}
-							catch() {
-								System.out.print("Class not found exception\n");
-							}
 
-							catch() {
+							try {
+								FileInputStream fi = new FileInputStream(filename);
+								ObjectInputStream in = new ObjectInputStream(fi);
+								deptManage1 = (DeptManagement)in.readObject();
+								in.close();
+								fi.close();
+							} catch (ClassNotFoundException e) {
+								System.out.print("Class not found exception\n");
+							} catch (NotSerializableException e) {
 								System.out.print("Not serializable exception\n");
-							}
-							catch() {
+							} catch (IOException e) {
 								System.out.print("Data file read exception\n");
 							}
 							break;
 						case '?':
-							//Display Menu
+							// Display Menu
 							printMenu();
 							break;
 						default:

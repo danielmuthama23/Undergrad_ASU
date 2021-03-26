@@ -29,22 +29,22 @@ public class Faculty implements Serializable {
 		return academicLevel;
 	}
 
-	//sets firstName to the specified string
+	// sets firstName to the specified string
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	//sets lastName to the specified string
+	// sets lastName to the specified string
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	//sets academicLevel to the specified string
+	// sets academicLevel to the specified string
 	public void setAcademicLevel(String level) {
 		academicLevel = level;
 	}
 
-	//return a string in the specified format
+	// return a string in the specified format
 	public String toString() {
 		return firstName + " " + lastName + ", " + academicLevel;
 	}

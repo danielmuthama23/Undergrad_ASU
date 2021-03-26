@@ -8,6 +8,8 @@ import java.util.Comparator;
 
 public class DeptNameComparator implements Comparator<Department> {
     public int compare(Department first, Department second) {
+        // System.out.println(first.getDeptName() + " " + second.getDeptName());
+        // System.out.println(first.getDeptName().compareTo(second.getDeptName()));
         return first.getDeptName().compareTo(second.getDeptName());
     }
 }

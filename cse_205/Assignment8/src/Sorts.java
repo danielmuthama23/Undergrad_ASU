@@ -7,13 +7,22 @@
 import java.util.Comparator;
 import java.util.ArrayList;
 
-public class Sorts
-{
+public class Sorts {
 	public static void sort(ArrayList<Department> deptList, Comparator<Department> xComparator) {
+		int min;
 
-		//----
-		//----
+		for (int index = 0; index < deptList.size() - 1; index++) {
+			min = index;
+			for (int s = index + 1; s < deptList.size(); s++) {
+				// System.out.println(xComparator.compare(deptList.get(index), deptList.get(min)));
+				if (xComparator.compare(deptList.get(index), deptList.get(min)) < 0) {
+					min = s;
+				}
+			}
 
-
-	} //end sort
-} //end class Sorts
+			Department temp = deptList.get(min);
+			deptList.set(min, deptList.get(index));
+			deptList.set(index, temp);
+		}
+	}
+}

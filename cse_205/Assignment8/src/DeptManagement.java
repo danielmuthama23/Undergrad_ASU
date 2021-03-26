@@ -10,7 +10,7 @@ public class DeptManagement {
 	ArrayList<Department> deptList;
 
 	public DeptManagement() {
-		//----
+		this.deptList = new ArrayList<Department>();
 	}
 
 	public int deptExists(String deptName, String universityName) {
@@ -27,10 +27,11 @@ public class DeptManagement {
 
 	public int facultyExists(String firstName, String lastName, String academicLevel) {
 		for (int i = 0; i < this.deptList.size(); i++) {
+			Faculty faculty = this.deptList.get(i).getFaculty();
 			if (
-				this.deptList.get(i).getFaculty().getFirstName().equals(firstName) &&
-				this.deptList.get(i).getFaculty().getLastName().equals(lastName) &&
-				this.deptList.get(i).getFaculty().getAcademicLevel().equals(academicLevel)
+				faculty.getFirstName().equals(firstName) &&
+				faculty.getLastName().equals(lastName) &&
+				faculty.getAcademicLevel().equals(academicLevel)
 			) {
 				return i;
 			}
@@ -46,7 +47,7 @@ public class DeptManagement {
 		String lastName,
 		String academicLevel
 	) {
-		if (this.deptExists(deptName, university) > 0) {
+		if (this.deptExists(deptName, university) < 0) {
 			this.deptList.add(
 				new Department(
 					deptName,
@@ -66,7 +67,7 @@ public class DeptManagement {
 	//***will remove all departments with the same name and university
 	public boolean removeDepartment(String deptName, String universityName) {
 		int exisitingDepart = this.deptExists(deptName, universityName);
-		if (exisitingDepart > 0) {
+		if (exisitingDepart >= 0) {
 			this.deptList.remove(exisitingDepart);
 			return true;
 		} else {
@@ -75,23 +76,29 @@ public class DeptManagement {
 	}
 
 	public void sortByDepartmentName() {
-		//----
+		Sorts.sort(this.deptList, new DeptNameComparator());
 	}
-
+	
 	public void sortByFacultyNumbers() {
-		//----
+		Sorts.sort(this.deptList, new FacultyNumberComparator());
 	}
-
+	
 	public void sortByDeptFaculty() {
-		//----
+		Sorts.sort(this.deptList, new DeptFacultyComparator());
 	}
 
 	public String listDepartments() {
-		//----
-		return "";
+		if (this.deptList.size() > 0) {
+			String list = "\n";
+			for (Department dept : this.deptList)
+				list += dept;
+			return list + "\n";
+		} else {
+			return "\nNo Department\n\n";
+		}
 	}
 
 	public void closeDeptManagement() {
-		//----
+		this.deptList = new ArrayList<Department>();
 	}
 }
