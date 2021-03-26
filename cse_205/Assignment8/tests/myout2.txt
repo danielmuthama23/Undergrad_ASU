@@ -107,25 +107,25 @@ University:		Arizona State University
 # of Members:	57
 Faculty:		John Smith, Assistant Professor
 
-Dept. Name:		English
-University:		University of Arizona
-# of Members:	43
-Faculty:		Meg Walker, Associate Professor
-
 Dept. Name:		Electrical Engineering
 University:		Arizona State University
 # of Members:	67
 Faculty:		Brian Skromme, Professor
 
-Dept. Name:		Finance
-University:		University of Texas at Austin
-# of Members:	59
-Faculty:		John Griffin, Professor
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
 
 Dept. Name:		English
 University:		Arizona State University
 # of Members:	40
 Faculty:		Sophie Music, Senior Lecturer
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
 
 
 What action would you like to perform?
@@ -134,30 +134,30 @@ sorted by faculty numbers
 What action would you like to perform?
 
 
-Dept. Name:		Computer Science
+Dept. Name:		English
 University:		Arizona State University
-# of Members:	57
-Faculty:		John Smith, Assistant Professor
+# of Members:	40
+Faculty:		Sophie Music, Senior Lecturer
 
 Dept. Name:		English
 University:		University of Arizona
 # of Members:	43
 Faculty:		Meg Walker, Associate Professor
 
-Dept. Name:		Electrical Engineering
+Dept. Name:		Computer Science
 University:		Arizona State University
-# of Members:	67
-Faculty:		Brian Skromme, Professor
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
 
 Dept. Name:		Finance
 University:		University of Texas at Austin
 # of Members:	59
 Faculty:		John Griffin, Professor
 
-Dept. Name:		English
+Dept. Name:		Electrical Engineering
 University:		Arizona State University
-# of Members:	40
-Faculty:		Sophie Music, Senior Lecturer
+# of Members:	67
+Faculty:		Brian Skromme, Professor
 
 
 What action would you like to perform?
@@ -166,21 +166,6 @@ sorted by current faculty name
 What action would you like to perform?
 
 
-Dept. Name:		Computer Science
-University:		Arizona State University
-# of Members:	57
-Faculty:		John Smith, Assistant Professor
-
-Dept. Name:		English
-University:		University of Arizona
-# of Members:	43
-Faculty:		Meg Walker, Associate Professor
-
-Dept. Name:		Electrical Engineering
-University:		Arizona State University
-# of Members:	67
-Faculty:		Brian Skromme, Professor
-
 Dept. Name:		Finance
 University:		University of Texas at Austin
 # of Members:	59
@@ -190,6 +175,21 @@ Dept. Name:		English
 University:		Arizona State University
 # of Members:	40
 Faculty:		Sophie Music, Senior Lecturer
+
+Dept. Name:		Electrical Engineering
+University:		Arizona State University
+# of Members:	67
+Faculty:		Brian Skromme, Professor
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
 
 
 What action would you like to perform?
@@ -200,16 +200,6 @@ Electrical Engineering at Arizona State University is removed
 What action would you like to perform?
 
 
-Dept. Name:		Computer Science
-University:		Arizona State University
-# of Members:	57
-Faculty:		John Smith, Assistant Professor
-
-Dept. Name:		English
-University:		University of Arizona
-# of Members:	43
-Faculty:		Meg Walker, Associate Professor
-
 Dept. Name:		Finance
 University:		University of Texas at Austin
 # of Members:	59
@@ -219,6 +209,16 @@ Dept. Name:		English
 University:		Arizona State University
 # of Members:	40
 Faculty:		Sophie Music, Senior Lecturer
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
 
 
 What action would you like to perform?

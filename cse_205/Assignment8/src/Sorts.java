@@ -6,6 +6,7 @@
 
 import java.util.Comparator;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Sorts {
 	public static void sort(ArrayList<Department> deptList, Comparator<Department> xComparator) {
@@ -14,15 +15,12 @@ public class Sorts {
 		for (int index = 0; index < deptList.size() - 1; index++) {
 			min = index;
 			for (int s = index + 1; s < deptList.size(); s++) {
-				// System.out.println(xComparator.compare(deptList.get(index), deptList.get(min)));
-				if (xComparator.compare(deptList.get(index), deptList.get(min)) < 0) {
+				if (xComparator.compare(deptList.get(s), deptList.get(min)) < 0) {
 					min = s;
 				}
 			}
 
-			Department temp = deptList.get(min);
-			deptList.set(min, deptList.get(index));
-			deptList.set(index, temp);
+			Collections.swap(deptList, min, index);
 		}
 	}
 }
