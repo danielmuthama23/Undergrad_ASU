@@ -1,0 +1,198 @@
+Choice		Action
+------		------
+A		Add a department
+C		Create a DeptManagement
+D		Search a department
+E		Search a faculty
+L		List departments
+N		Sort by department names
+O		Sort by department faculty numbers
+P		Sort by current faculty name
+Q		Quit
+R		Remove a department
+T		Close DeptManagement
+U		Write strings to a text file
+V		Read strings from a text file
+W		Serialize DeptManagement to a data file
+X		Deserialize DeptManagement from a data file
+?		Display Help
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department added
+
+What action would you like to perform?
+Please enter the department information:
+Enter department name:
+Enter number of faculty:
+Enter university name:
+Enter faculty first name:
+Enter faculty last name:
+Enter faculty academic level:
+Department NOT added
+
+What action would you like to perform?
+
+
+Dept. Name:		Electrical Engineering
+University:		Arizona State University
+# of Members:	67
+Faculty:		Brian Skromme, Professor
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
+
+Dept. Name:		Computer Science
+University:		University of Texas at Austin
+# of Members:	45
+Faculty:		Anna Chaney, Assistant Professor
+
+
+What action would you like to perform?
+Please enter the department name to search:
+Please enter the university name to search:
+Computer Science at University of Texas at Austin is found
+
+What action would you like to perform?
+Please enter the department name to search:
+Please enter the university name to search:
+Computer Science at University of Washington is NOT found
+
+What action would you like to perform?
+sorted by department names
+
+What action would you like to perform?
+
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		Computer Science
+University:		University of Texas at Austin
+# of Members:	45
+Faculty:		Anna Chaney, Assistant Professor
+
+Dept. Name:		Electrical Engineering
+University:		Arizona State University
+# of Members:	67
+Faculty:		Brian Skromme, Professor
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
+
+
+What action would you like to perform?
+sorted by faculty numbers
+
+What action would you like to perform?
+
+
+Dept. Name:		English
+University:		University of Arizona
+# of Members:	43
+Faculty:		Meg Walker, Associate Professor
+
+Dept. Name:		Computer Science
+University:		University of Texas at Austin
+# of Members:	45
+Faculty:		Anna Chaney, Assistant Professor
+
+Dept. Name:		Computer Science
+University:		Arizona State University
+# of Members:	57
+Faculty:		John Smith, Assistant Professor
+
+Dept. Name:		Finance
+University:		University of Texas at Austin
+# of Members:	59
+Faculty:		John Griffin, Professor
+
+Dept. Name:		Electrical Engineering
+University:		Arizona State University
+# of Members:	67
+Faculty:		Brian Skromme, Professor
+
+
+What action would you like to perform?
+Please enter a file name that we will write to:
+Please enter a string to write inside the file:
+ASUCSE205.txt is written
+
+What action would you like to perform?
+Please enter a file name which we will read from:
+ASUCSE205.txt was read
+The first line of the file is:
+ASU CSE205 Spring 2021 Assignment #8
+
+What action would you like to perform?
+Please enter a file name which we will read from:
+asucse.txt not found error
+
+What action would you like to perform?

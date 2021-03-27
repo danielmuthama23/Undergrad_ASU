@@ -2,9 +2,9 @@
 //         Name: Tyler Fichiera
 //    StudentID: 1218959911
 //      Lecture: T/Th 4:30
-//  Description: 
+//  Description: Department class that extends Serializable so it can be serialized
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Department implements Serializable {
 	// private instance variables
@@ -27,35 +27,42 @@ public class Department implements Serializable {
 		currentFaculty = new Faculty(firstName, lastName, academicLevel);
 	}
 
+	// dept name getter
 	public String getDeptName() {
 		return deptName;
 	}
 
-	// return university
+	// university getter
 	public String getUniversity() {
 		return university;
 	}
 
+	// number of members getter
 	public int getNumOfMembers() {
 		return numOfMembers;
 	}
 
+	// current faculty getter
 	public Faculty getFaculty() {
 		return currentFaculty;
 	}
 
+	// setter for dept name
 	public void setDeptName(String a) {
 		deptName = a;
 	}
 
+	// setter for num of members
 	public void setNumOfMembers(int a) {
 		numOfMembers = a;
 	}
 
+	// setter for university
 	public void setUniversity(String a) {
 		university = a;
 	}
 
+	// setter for faculty info
 	public void setFaculty(String firstName, String lastName, String academicLevel) {
 		currentFaculty.setFirstName(firstName);
 		currentFaculty.setLastName(lastName);

@@ -2,13 +2,14 @@
 //         Name: Tyler Fichiera
 //    StudentID: 1218959911
 //      Lecture: T/Th 4:30
-//  Description: 
+//  Description: Sort method using a selection sort
 
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Sorts {
+	// insertion sort
 	public static void sort(ArrayList<Department> deptList, Comparator<Department> xComparator) {
 		int min;
 
@@ -20,6 +21,7 @@ public class Sorts {
 				}
 			}
 
+			// swap the items in the list
 			Collections.swap(deptList, min, index);
 		}
 	}

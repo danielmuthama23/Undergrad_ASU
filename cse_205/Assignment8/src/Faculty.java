@@ -2,9 +2,9 @@
 //         Name: Tyler Fichiera
 //    StudentID: 1218959911
 //      Lecture: T/Th 4:30
-//  Description: 
+//  Description: class for Faculty that implements Serializable so it can be serialized
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Faculty implements Serializable {
 	// private instance variables
@@ -17,14 +17,17 @@ public class Faculty implements Serializable {
 		this.academicLevel = academicLevel;
 	}
 
+	// getter for first name
 	public String getFirstName() {
 		return firstName;
 	}
 
+	// getter for last name
 	public String getLastName() {
 		return lastName;
 	}
 
+	// getter for academic level
 	public String getAcademicLevel() {
 		return academicLevel;
 	}

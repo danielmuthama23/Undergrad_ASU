@@ -11,22 +11,18 @@ import java.io.*;
 
 public class Assignment8 {
 	public static void main(String[] args) {
-		// private instance variables
+		// method scoped variables
 		String deptName, numOfFacultyStr, nameOfUniversity;
 		String firstName, lastName, academicLevel;
 		String university;
-		char input1;
+		char input;
 		int numOfFaculty;
 
 		String line;
 		String filename;
-		// boolean operation = false;
-		// int operation2 = 0;
 
 		// create a DeptManagement object. This is used throughout this class.
 		DeptManagement deptManage1 = new DeptManagement();
-
-		// File file;
 
 		try {
 			// print out the menu
@@ -38,13 +34,13 @@ public class Assignment8 {
 
 			do {
 				System.out.print("\nWhat action would you like to perform?\n");
-				line = stdin.readLine().trim(); //read a line
-				input1 = line.charAt(0);
-				input1 = Character.toUpperCase(input1);
+				line = stdin.readLine().trim(); // first read a line
+				input = line.charAt(0);
+				input = Character.toUpperCase(input);
 
 				// check if a user entered only one character
 				if (line.length() == 1) {
-					switch (input1) {
+					switch (input) {
 						case 'A':
 							// Add Department
 							System.out.print("Please enter the department information:\n");
@@ -62,6 +58,7 @@ public class Assignment8 {
 							System.out.print("Enter faculty academic level:\n");
 							academicLevel = stdin.readLine().trim();
 
+							// add department
 							boolean addedDepartment = deptManage1.addDepartment(
 								deptName,
 								nameOfUniversity,
@@ -87,6 +84,7 @@ public class Assignment8 {
 							System.out.print("Please enter the university name to search:\n");
 							university = stdin.readLine().trim();
 
+							// check if department exists
 							if (deptManage1.deptExists(deptName, university) >= 0) {
 								System.out.print(deptName + " at " + university + " is found\n");
 							} else {
@@ -94,7 +92,7 @@ public class Assignment8 {
 							}
 							break;
 						case 'E':
-							// Search faculty
+							// search faculty
 							System.out.print("Please enter the faculty first name to search:\n");
 							firstName = stdin.readLine().trim();
 							System.out.print("Please enter the faculty last name to search:\n");
@@ -102,6 +100,7 @@ public class Assignment8 {
 							System.out.print("Please enter the faculty academic level to search:\n");
 							academicLevel = stdin.readLine().trim();
 
+							// check if faculty exists
 							if (deptManage1.facultyExists(firstName, lastName, academicLevel) >= 0) {
 								System.out.print("Faculty: " + firstName + " " + lastName + ", " + academicLevel + " is found\n");
 							} else {
@@ -131,12 +130,12 @@ public class Assignment8 {
 							// Quit
 							break;
 						case 'R':
-							// Remove a department
 							System.out.print("Please enter the department name to remove:\n");
 							deptName = stdin.readLine().trim();
 							System.out.print("Please enter the university name to remove:\n");
 							university = stdin.readLine().trim();
-
+						
+							// Remove a department
 							if (deptManage1.removeDepartment(deptName, university)) {
 								System.out.print(deptName + " at " + university + " is removed\n");
 							} else {
@@ -157,9 +156,11 @@ public class Assignment8 {
 							String fileContent = stdin.readLine().trim();
 
 							try {
+								// create FileWriter and add content to it
 								FileWriter writer = new FileWriter(filename);
 								writer.write(fileContent);
 								writer.close();
+								System.out.print(filename + " is written\n");
 							} catch (Exception e) {
 								System.out.print("Write string inside the file error\n");
 							}
@@ -168,8 +169,11 @@ public class Assignment8 {
 							// Read Text from a File
 							System.out.print("Please enter a file name which we will read from:\n");
 							filename = stdin.readLine().trim();
+
 							try {
+								// create BufferReader and read the first line
 								BufferedReader br = new BufferedReader(new FileReader(filename)); 
+								System.out.print(filename + " was read\n");
 								System.out.print("The first line of the file is:\n" + br.readLine() + "\n");
 								br.close();
 							} catch (FileNotFoundException e) {
@@ -184,12 +188,14 @@ public class Assignment8 {
 							filename = stdin.readLine().trim();
 
 							try {
+								// create FileOutputStream and ObjectOutputStream to write serialized object to file
 								FileOutputStream fos = new FileOutputStream(filename);
          						
 								ObjectOutputStream out = new ObjectOutputStream(fos);
-								out.writeObject("Please enter a file name to write:\n" + deptManage1);
+								out.writeObject(deptManage1);
 								out.close();
 
+								// close the Streams
 								fos.close();
 							} catch (FileNotFoundException e) {
 								System.out.print("Not serializable exception\n");
@@ -203,11 +209,14 @@ public class Assignment8 {
 							filename = stdin.readLine().trim();
 
 							try {
+								// create FileOutputStream and ObjectOutputStream to read serialized object in file
 								FileInputStream fi = new FileInputStream(filename);
 								ObjectInputStream in = new ObjectInputStream(fi);
 								deptManage1 = (DeptManagement)in.readObject();
 								in.close();
 								fi.close();
+
+								System.out.print(filename + " was read\n");
 							} catch (ClassNotFoundException e) {
 								System.out.print("Class not found exception\n");
 							} catch (NotSerializableException e) {
@@ -227,7 +236,9 @@ public class Assignment8 {
 				} else {
 					System.out.print("Unknown action\n");
 				}
-			} while ( input1 != 'Q' || line . length () != 1);
+				// do unity a user quits
+			} while ( input != 'Q' || line.length () != 1);
+		// catch all exceptions
 		} catch (IOException exception) {
 			System.out.print("IO Exception\n");
 		}
