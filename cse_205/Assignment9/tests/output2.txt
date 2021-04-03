@@ -1,0 +1,4 @@
+The maximum number is 45678
+The largest even integer in the sequence is 45678
+The count of numbers divisible by 3 is 4
+The sum of numbers larger than the last is 47080

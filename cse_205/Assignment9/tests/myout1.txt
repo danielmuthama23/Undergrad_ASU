@@ -1,0 +1,4 @@
+The maximum number is 53211
+The largest even integer in the sequence is 12312
+The count of numbers divisible by 3 is 5
+The sum of numbers larger than the last is 68301

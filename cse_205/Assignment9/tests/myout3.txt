@@ -1,0 +1,4 @@
+The maximum number is 222
+The largest even integer in the sequence is 222
+The count of numbers divisible by 3 is 9
+The sum of numbers larger than the last is -444

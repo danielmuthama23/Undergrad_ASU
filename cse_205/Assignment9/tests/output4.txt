@@ -1,0 +1,4 @@
+The maximum number is -31
+The largest even integer in the sequence is -34
+The count of numbers divisible by 3 is 0
+The sum of numbers larger than the last is 0
