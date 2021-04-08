@@ -1,0 +1,71 @@
+Choice		Action
+------		------
+A		Add String
+B		Count Occurrences
+C		Search
+D		Remove
+E		Size
+L		List Strings
+F		Remove String
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Grape }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Grape Melon }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Grape Melon }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Grape Melon Peach }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Grape Grape Melon Peach }
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+{ Apple Grape Grape Melon Peach }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Grape Grape Melon Peach Potato }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Grape Grape Kiwi Melon Peach Potato }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Avocado Grape Grape Kiwi Melon Peach Potato }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Avocado Grape Grape Kiwi Lemon Melon Peach Potato }
+What action would you like to perform?

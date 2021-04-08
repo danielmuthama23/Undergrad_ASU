@@ -1,0 +1,62 @@
+Choice		Action
+------		------
+A		Add String
+B		Count Occurrences
+C		Search
+D		Remove
+E		Size
+L		List Strings
+F		Remove String
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+{ }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Banana Guava Mango Tomato }
+What action would you like to perform?
+Please enter a string to search:
+string not found
+What action would you like to perform?
+{ Banana Guava Mango Tomato }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Banana Banana Guava Mango Tomato }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Banana Banana Guava Mango Tomato Tomato }
+What action would you like to perform?
+Please enter a string to search:
+string found at 0
+What action would you like to perform?
+{ Banana Banana Guava Mango Tomato Tomato }
+What action would you like to perform?
+Please enter an index of a string to remove:
+The string Banana was removed
+What action would you like to perform?
+{ Banana Guava Mango Tomato Tomato }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to search:
+string not found
+What action would you like to perform?
+{ Banana Guava Mango Tomato Tomato Tomato }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to count:
+string occurs 1 time(s)
+What action would you like to perform?
+{ Banana Guava Lime Mango Tomato Tomato Tomato }
+What action would you like to perform?

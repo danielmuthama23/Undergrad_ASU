@@ -1,0 +1,62 @@
+Choice		Action
+------		------
+A		Add String
+B		Count Occurrences
+C		Search
+D		Remove
+E		Size
+L		List Strings
+F		Remove String
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Banana }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Apple Banana }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Apple Banana Grape Guava Kiwi Lemon Melon Olive Orange Pear Potato }
+What action would you like to perform?
+Please enter a string to search:
+string found at 6
+What action would you like to perform?
+Please enter a string to search:
+string found at 0
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter an index of a string to remove:
+The string Apple was removed
+What action would you like to perform?
+The current size is 12
+What action would you like to perform?
+Please enter a string to count:
+string occurs 1 time(s)
+What action would you like to perform?
+Please enter a string to count:
+string occurs 0 time(s)
+What action would you like to perform?

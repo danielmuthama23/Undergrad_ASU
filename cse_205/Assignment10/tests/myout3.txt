@@ -1,0 +1,66 @@
+Choice		Action
+------		------
+A		Add String
+B		Count Occurrences
+C		Search
+D		Remove
+E		Size
+L		List Strings
+F		Remove String
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+{ }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Orange }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter an index of a string to remove:
+The string Strawberry was removed
+What action would you like to perform?
+{ Apple Orange }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Apple Banana Orange }
+What action would you like to perform?
+Please enter an index of a string to remove:
+The string Apple was removed
+What action would you like to perform?
+{ Banana Orange }
+What action would you like to perform?
+Please enter a string to search:
+string not found
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+{ Banana Orange Orange Potato }
+What action would you like to perform?
+Please enter a number of elements to remove from the end:
+What action would you like to perform?
+{ Banana }
+What action would you like to perform?
+The current size is 1
+What action would you like to perform?
+{ Banana }
+What action would you like to perform?
+Please enter a number of elements to remove from the end:
+What action would you like to perform?
+{ }
+What action would you like to perform?
+Please enter a string to add:
+What action would you like to perform?
+Please enter a number of elements to remove from the end:
+What action would you like to perform?
+{ }
+What action would you like to perform?
