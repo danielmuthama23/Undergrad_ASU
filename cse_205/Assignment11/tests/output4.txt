@@ -1,0 +1,60 @@
+Choice		Action
+------		------
+E		Enter Problem Parameter
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter a number of queens.
+Trying to place a queen in row 0 in column 0
+Trying to place a queen in row 1 in column 0
+Trying to place a queen in row 1 in column 1
+Trying to place a queen in row 1 in column 2
+Trying to place a queen in row 2 in column 0
+Trying to place a queen in row 2 in column 1
+Trying to place a queen in row 2 in column 2
+Trying to place a queen in row 2 in column 3
+Trying to place a queen in row 2 in column 4
+Trying to place a queen in row 3 in column 0
+Trying to place a queen in row 3 in column 1
+Trying to place a queen in row 4 in column 0
+Trying to place a queen in row 4 in column 1
+Trying to place a queen in row 4 in column 2
+Trying to place a queen in row 4 in column 3
+Trying to place a queen in row 5 in column 0
+Trying to place a queen in row 5 in column 1
+Trying to place a queen in row 5 in column 2
+Trying to place a queen in row 5 in column 3
+Trying to place a queen in row 5 in column 4
+Trying to place a queen in row 5 in column 5
+Trying to place a queen in row 5 in column 6
+Trying to place a queen in row 4 in column 4
+Trying to place a queen in row 4 in column 5
+Trying to place a queen in row 4 in column 6
+Trying to place a queen in row 3 in column 2
+Trying to place a queen in row 3 in column 3
+Trying to place a queen in row 3 in column 4
+Trying to place a queen in row 3 in column 5
+Trying to place a queen in row 3 in column 6
+Trying to place a queen in row 4 in column 0
+Trying to place a queen in row 4 in column 1
+Trying to place a queen in row 5 in column 0
+Trying to place a queen in row 5 in column 1
+Trying to place a queen in row 5 in column 2
+Trying to place a queen in row 5 in column 3
+Trying to place a queen in row 6 in column 0
+Trying to place a queen in row 6 in column 1
+Trying to place a queen in row 6 in column 2
+Trying to place a queen in row 6 in column 3
+Trying to place a queen in row 6 in column 4
+Trying to place a queen in row 6 in column 5
+solution found
+ |0|1|2|3|4|5|6|
+0|Q|_|_|_|_|_|_|
+1|_|_|Q|_|_|_|_|
+2|_|_|_|_|Q|_|_|
+3|_|_|_|_|_|_|Q|
+4|_|Q|_|_|_|_|_|
+5|_|_|_|Q|_|_|_|
+6|_|_|_|_|_|Q|_|
+What action would you like to perform?

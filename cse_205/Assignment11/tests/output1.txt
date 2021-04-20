@@ -1,0 +1,37 @@
+Choice		Action
+------		------
+E		Enter Problem Parameter
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter a number of queens.
+Trying to place a queen in row 0 in column 0
+Trying to place a queen in row 1 in column 0
+Trying to place a queen in row 1 in column 1
+Trying to place a queen in row 0 in column 1
+Trying to place a queen in row 1 in column 0
+Trying to place a queen in row 1 in column 1
+solution not found
+What action would you like to perform?
+Please enter a number of queens.
+Trying to place a queen in row 0 in column 0
+Trying to place a queen in row 1 in column 0
+Trying to place a queen in row 1 in column 1
+Trying to place a queen in row 1 in column 2
+Trying to place a queen in row 2 in column 0
+Trying to place a queen in row 2 in column 1
+Trying to place a queen in row 2 in column 2
+Trying to place a queen in row 0 in column 1
+Trying to place a queen in row 1 in column 0
+Trying to place a queen in row 1 in column 1
+Trying to place a queen in row 1 in column 2
+Trying to place a queen in row 0 in column 2
+Trying to place a queen in row 1 in column 0
+Trying to place a queen in row 2 in column 0
+Trying to place a queen in row 2 in column 1
+Trying to place a queen in row 2 in column 2
+Trying to place a queen in row 1 in column 1
+Trying to place a queen in row 1 in column 2
+solution not found
+What action would you like to perform?
