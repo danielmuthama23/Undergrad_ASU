@@ -2,3 +2,6 @@
 
 # Java Compiled class file
 *.class
+
+# Debug file
+*.dSYM
