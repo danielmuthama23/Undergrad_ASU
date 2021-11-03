@@ -123,6 +123,7 @@ void executeAction(char c) {
 				cin.ignore();
 
 				// Q3c Call changePrice() here   (1 point)
+				changePrice(bookResult, price_input);
 				// 'bookResult' contains the book whose 'price' is to be changed.
 				// 'price_input' contains the new price of the book.
 				// Call the function with appropriate arguments.
