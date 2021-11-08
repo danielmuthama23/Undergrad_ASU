@@ -32,8 +32,8 @@
 
 ; Q7 (10 points)
 (define (Letexpression) (
-  let ((two 2) (four 4) (five 5) (six 6) (ten 10))
-  (- (/ (- (* (* (* (+ four six) (+ six four)) two) two) ten) two) (+ (/ (* (+ (* four five) (* six four)) 3) two) (* four five)))
+  let ((two 2) (three 3) (four 4) (five 5) (six 6) (ten 10))
+  (- (/ (- (* (* (* (+ four six) (+ six four)) two) two) ten) two) (+ (/ (* (+ (* four five) (* six four)) three) two) (* four five)))
 ))
 
 (Letexpression)
