@@ -1,0 +1,6 @@
+# ignore executables
+
+*
+!*.pl
+!*.sh
+!.gitignore
