@@ -1,0 +1,9 @@
+# ignore executables
+
+*
+!*.c
+!*.cpp
+!*.pl
+!*.rkt
+!*.sh
+!.gitignore
