@@ -20,6 +20,7 @@ def main():
     inside_house = [] # filled with user names
 
     for line in input_lines:
+        print(inserted_keys)
         line_split = line.split(' ')
         command = line_split[0] + " " + line_split[1]
 
@@ -75,3 +76,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"""
+INSERT KEY adam key
+TURN KEY adam
+ENTER HOUSE adam
+INSERT KEY pat foobar
+TURN KEY adam
+ENTER HOUSE adam
+INSERT KEY pat foobar
+TURN KEY pat
+ENTER HOUSE adam
+INSERT KEY pat foobar
+TURN KEY pat
+ENTER HOUSE pat
+"""
