@@ -20,15 +20,13 @@ class BinarySearchTree {
         BinarySearchTree() {
             root = NULL;
         }
-        bool isEmpty() const { return root == NULL; }
         void TREE_INSERT(int);
         void INORDER_TREE_WALK(node*);
         void PREORDER_TREE_WALK(node*);
         void POSTORDER_TREE_WALK(node*);
-        node* TREE_SEARCH(node*, int k);
+        node* TREE_SEARCH(node*, int);
         node* TREE_MINIMUM(node*);
         node* TREE_MAXIMUM(node*);
-        // void REMOVE_MAX();
         node* TREE_SUCCESSOR(node*);
         void TRANSPLANT(node*, node*);
         void TREE_DELETE(node*);
@@ -117,7 +115,6 @@ BinarySearchTree::node* BinarySearchTree::TREE_MAXIMUM(node* x) {
 // page 292
 BinarySearchTree::node* BinarySearchTree::TREE_SUCCESSOR(node* x) {
     if (x->right != NULL) {
-        cout << "here 1" << endl;
         return TREE_MINIMUM(x->right);
     }
     node* y = x->parent;
@@ -250,7 +247,6 @@ int main() {
                 break;
             }
             case 9: {
-                system("pause");
                 return 0;
                 break;
             }
