@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define SIZE_M 3
+#define SIZE_M 753
 
 class HashOpen {
     public:
