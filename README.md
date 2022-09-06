@@ -10,5 +10,8 @@ An archive of all my code submitted for undergrad
 | CSE 230 | Computer Organization / Assembly Language | Spring '22 |
 | CSE 240 | Intro to Programming Languages            | Fall '21   |
 | CSE 310 | Data Structures and Algorithms            | Summer '22 |
+| CSE 330 | Operating Systems                         | Fall '22   |
+| CSE 340 | Principles of Programming Languages       | Fall '22   |
 | CSE 360 | Intro to Software Engineering             | Spring '22 |
 | CSE 365 | Information Assurance                     | Spring '22 |
+| CSE 445 | Distributed Software Development          | Fall '22   |
