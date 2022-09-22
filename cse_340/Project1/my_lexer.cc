@@ -9,6 +9,7 @@
 #include <cctype>
 #include <sstream>
 #include <set>
+#include <algorithm>
 
 #include "my_lexer.h"
 #include "inputbuf.h"
