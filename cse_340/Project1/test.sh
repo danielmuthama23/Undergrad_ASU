@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TEST_FOLDER="./tests"
-# TEST_FOLDER="./tests/Syntax_Error_General"
+# TEST_FOLDER="./tests/Epsilon"
 
 SPECIAL_TEST_FOLDERS=(
 	"Syntax_Error_General" "SYNTAX ERROR"

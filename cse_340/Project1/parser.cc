@@ -1,11 +1,6 @@
 /*
- * Copyright (C) Rida Bazzi, 2020
- *
- * Do not share this file with anyone
- *
- * Do not post this file or derivatives of
- * of this file online
- *
+ * CSE 340 Project 1 - parser.cc
+ * Tyler Fichiera
  */
 #include <iostream>
 #include <cstdlib>
@@ -14,20 +9,13 @@
 
 using namespace std;
 
-// void Parser::syntax_error()
-// {
-//     cout << "SYNTAX ERROR\n";
-//     exit(1);
-// }
-
 // this function gets a token and checks if it is
 // of the expected type. If it is, the token is
 // returned, otherwise, synatx_error() is generated
 // this function is particularly useful to match
 // terminals in a right hand side of a rule.
 // Written by Mohsen Zohrevandi
-Token Parser::expect(TokenType expected_type, bool from_regexp = false)
-{
+Token Parser::expect(TokenType expected_type, bool from_regexp = false) {
     Token t = lexer.GetToken();
     if (t.token_type != expected_type) {
         if (from_regexp)
@@ -38,14 +26,10 @@ Token Parser::expect(TokenType expected_type, bool from_regexp = false)
     return t;
 }
 
-bool Parser::isEpsilonToken(REG* reg) {
-    return true;
-}
-
+// parse the expression non-terminal based on the lang in the pdf
 REG* Parser::parse_expr()
 {
     Token t = lexer.GetToken();
-    // t.Print();
 
     if (t.token_type == CHAR) {
         // expr -> CHAR
@@ -53,6 +37,9 @@ REG* Parser::parse_expr()
 
         REG_node* startNode = new REG_node();
         REG_node* acceptNode = new REG_node();
+
+        startNode->id = myLexer.getCounter();
+        acceptNode->id = myLexer.getCounter();
 
         startNode->first_label = *t.lexeme.c_str();
         startNode->first_neighbor = acceptNode;
@@ -67,6 +54,9 @@ REG* Parser::parse_expr()
 
         REG_node* startNode = new REG_node();
         REG_node* acceptNode = new REG_node();
+
+        startNode->id = myLexer.getCounter();
+        acceptNode->id = myLexer.getCounter();
 
         startNode->first_label = '_';
         startNode->first_neighbor = acceptNode;
@@ -94,6 +84,9 @@ REG* Parser::parse_expr()
             REG_node* startNode = new REG_node();
             REG_node* acceptNode = new REG_node();
 
+            startNode->id = myLexer.getCounter();
+            acceptNode->id = myLexer.getCounter();
+
             startNode = r1->start;
 
             r1->accept->first_label = '_';
@@ -118,6 +111,9 @@ REG* Parser::parse_expr()
             REG_node* startNode = new REG_node();
             REG_node* acceptNode = new REG_node();
 
+            startNode->id = myLexer.getCounter();
+            acceptNode->id = myLexer.getCounter();
+
             // point to both r1 and r2
             startNode->first_label = '_';
             startNode->second_label = '_';
@@ -141,6 +137,9 @@ REG* Parser::parse_expr()
 
             REG_node* startNode = new REG_node();
             REG_node* acceptNode = new REG_node();
+
+            startNode->id = myLexer.getCounter();
+            acceptNode->id = myLexer.getCounter();
 
             // allow there to be no elements (epsilon)
             startNode->second_label = '_';
@@ -169,15 +168,17 @@ REG* Parser::parse_expr()
     }
 }
 
+// parse the token non-terminal based on the lang in the pdf
 void Parser::parse_token()
 {
     Token t = expect(ID);
 
     // check if token is already defined
     // if so, throw error and exit
-    for (TokenREG* tmp : lexer.token_reg_list) {
-        if (t.lexeme.compare(tmp->token_name) == 0) {
-            cout << "Line " << t.line_no << ": " << t.lexeme << " already declared on line " << tmp->token_line_no << endl;
+    for (TokenREG tmp : myLexer.token_reg_list) {
+        if (t.lexeme.compare(tmp.token_name) == 0) {
+            this->hasSemanticError = true;
+            cout << "Line " << t.line_no << ": " << t.lexeme << " already declared on line " << tmp.token_line_no << endl;
             break;
         }
     }
@@ -195,9 +196,10 @@ void Parser::parse_token()
     tokenReg->token_line_no = t.line_no;
     tokenReg->reg_pointer = reg;
 
-    lexer.token_reg_list.push_back(tokenReg);
+    myLexer.token_reg_list.push_back(*tokenReg);
 }
 
+// parse the token list non-terminal based on the lang in the pdf
 void Parser::parse_token_list()
 {
     parse_token();
@@ -217,56 +219,53 @@ void Parser::parse_token_list()
     }
 }
 
+// parse the token section non-terminal based on the lang in the pdf
 void Parser::parse_tokens_section()
 {
+    this->hasSemanticError = false;
     parse_token_list();
+
+    if (this->hasSemanticError) exit(1);
+
     expect(HASH);
 }
 
+// parse the input non-terminal based on the lang in the pdf
 void Parser::parse_input()
 {
     parse_tokens_section();
-    expect(INPUT_TEXT);
+    Token t = expect(INPUT_TEXT);
+    std::string temp = t.lexeme.substr(1, t.lexeme.size() - 2);
+    if(temp.at(0) == ' '){
+        temp = temp.substr(1, temp.size());
+    }
+    if(temp.at(temp.size() - 1) == ' '){
+        temp = temp.substr(0, temp.size() - 1);
+    }
+
+    myLexer.setInputStr(temp);
 }
 
+// main parse function called by main
 void Parser::parse_Input()
 {
     parse_input();
-    expect(END_OF_FILE);
-    // TODO: call lexer.my_getToken
-}
 
-// This function simply reads and prints all tokens
-// I included it as an example. You should compile the provided code
-// as it is and then run ./a.out < tests/test0.txt to see what this function does
+    myLexer.checkEpsilonErrors();
 
-void Parser::readAndPrintAllInput()
-{
-    Token t;
-
-    // get a token
-    t = lexer.GetToken();
-
-    // while end of input is not reached
-    while (t.token_type != END_OF_FILE) 
-    {
-        t.Print();         	// pringt token
-        t = lexer.GetToken();	// and get another one
+    if (myLexer.epsilonErrors.size() > 0) {
+        cout << "EPSILON IS NOOOOOOOT A TOKEN !!!";
+        for (string ee : myLexer.epsilonErrors) {
+            cout << " " << ee;
+        }
+        cout << endl;
+        exit(1);
     }
-        
-    // note that you should use END_OF_FILE and not EOF
+
+    myLexer.MyGetToken();
 }
 
-int main()
-{
-    // note: the parser class has a lexer object instantiated in it (see file
-    // parser.h). You should not be declaring a separate lexer object. 
-    // You can access the lexer object in the parser functions as shown in 
-    // the example  method Parser::readAndPrintAllInput()
-    // If you declare another lexer object, lexical analysis will 
-    // not work correctly
+int main() {
     Parser parser;
-
     parser.parse_Input();
-    // parser.readAndPrintAllInput();
 }
