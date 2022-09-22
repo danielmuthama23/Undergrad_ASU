@@ -20,7 +20,7 @@ Token Parser::expect(TokenType expected_type, bool from_regexp = false) {
     if (t.token_type != expected_type) {
         if (from_regexp)
             throw string("PARSING_SYNTAX_ERROR");
-        cout << "SYNTAX ERROR" << endl;
+        cout << "SNYTAX ERROR" << endl;
         exit(1);
     }
     return t;
@@ -214,7 +214,7 @@ void Parser::parse_token_list()
         parse_token_list(); // recursive call back
     } else {
         // syntax_error(); // 
-        cout << "SYNTAX ERROR" << endl;
+        cout << "SNYTAX ERROR" << endl;
         exit(1);
     }
 }
