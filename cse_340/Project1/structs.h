@@ -24,25 +24,10 @@ struct REG {
   struct REG_node* accept;
 };
 
-// ------- token types -------------------
-typedef enum { END_OF_FILE = 0,
-    LPAREN, RPAREN, HASH, ID, COMMA, DOT, STAR,
-    OR, UNDERSCORE, SYMBOL, CHAR, INPUT_TEXT, ERROR
-    } TokenType;
-
 struct TokenREG {
   string token_name;
   int token_line_no;
   REG* reg_pointer;
-};
-
-class Token {
-  public:
-    void Print();
-
-    string lexeme;
-    TokenType token_type;
-    int line_no;
 };
 
 #endif

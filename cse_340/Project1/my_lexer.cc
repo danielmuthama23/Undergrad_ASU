@@ -12,8 +12,11 @@
 #include <algorithm>
 
 #include "my_lexer.h"
+#include "lexer.h"
 #include "inputbuf.h"
 #include "structs.h"
+
+struct Token;
 
 using namespace std;
 

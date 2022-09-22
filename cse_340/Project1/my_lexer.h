@@ -9,6 +9,7 @@
 #include <string>
 #include <set>
 
+#include "lexer.h"
 #include "structs.h"
 
 using namespace std;

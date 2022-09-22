@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdlib>
 
+#include "lexer.h"
 #include "parser.h"
 
 using namespace std;
@@ -250,6 +251,7 @@ void Parser::parse_input()
 void Parser::parse_Input()
 {
     parse_input();
+    expect(END_OF_FILE);
 
     myLexer.checkEpsilonErrors();
 

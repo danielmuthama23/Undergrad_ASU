@@ -1,6 +1,7 @@
 /*
- * CSE 340 Project 1 - lexer.h
- * Tyler Fichiera
+ * Copyright (C) Rida Bazzi, 2019
+ *
+ * Do not share this file with anyone
  */
 #ifndef __LEXER__H__
 #define __LEXER__H__
@@ -9,7 +10,22 @@
 #include <string>
 
 #include "inputbuf.h"
-#include "structs.h"
+
+// ------- token types -------------------
+
+typedef enum { END_OF_FILE = 0,
+    LPAREN, RPAREN, HASH, ID, COMMA, DOT, STAR,
+    OR, UNDERSCORE, SYMBOL, CHAR, INPUT_TEXT, ERROR
+    } TokenType;
+
+class Token {
+  public:
+    void Print();
+
+    std::string lexeme;
+    TokenType token_type;
+    int line_no;
+};
 
 class LexicalAnalyzer {
   public:
