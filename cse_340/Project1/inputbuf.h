@@ -1,0 +1,22 @@
+/*
+ * CSE 340 Project 1 - inputbuf.h
+ * Tyler Fichiera
+ */
+#ifndef __INPUT_BUFFER__H__
+#define __INPUT_BUFFER__H__
+
+#include <string>
+#include <vector>
+
+class InputBuffer {
+  public:
+    void GetChar(char&);
+    char UngetChar(char);
+    std::string UngetString(std::string);
+    bool EndOfInput();
+
+  private:
+    std::vector<char> input_buffer;
+};
+
+#endif  //__INPUT_BUFFER__H__
