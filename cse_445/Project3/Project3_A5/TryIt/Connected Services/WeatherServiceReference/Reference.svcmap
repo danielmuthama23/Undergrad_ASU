@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="3d9b6dfa-0364-42ad-926b-7e60502e5bd6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:51041/WeatherService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WeatherService.xsd" MetadataType="Schema" ID="c08da6dc-fd86-4c60-85ae-833faf97065d" SourceId="1" SourceUrl="http://localhost:51041/WeatherService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WeatherService1.xsd" MetadataType="Schema" ID="8478e9f9-d357-4771-8f98-56f0ef876f78" SourceId="1" SourceUrl="http://localhost:51041/WeatherService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WeatherService2.xsd" MetadataType="Schema" ID="78fc19f8-c6a4-489a-9e0e-991790c89143" SourceId="1" SourceUrl="http://localhost:51041/WeatherService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="9e9776d1-c8c8-4e5d-90ee-8b1ff5d11e85" SourceId="1" SourceUrl="http://localhost:51041/WeatherService.svc?wsdl" />
+    <MetadataFile FileName="WeatherService.disco" MetadataType="Disco" ID="7db4c407-81eb-4520-88a2-17d1eb9adf45" SourceId="1" SourceUrl="http://localhost:51041/WeatherService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WebDownloading.Service1" CodeBehind="WebDownloadingService.svc.cs" %>
