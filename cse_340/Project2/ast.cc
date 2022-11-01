@@ -1,3 +1,8 @@
+/*
+ * CSE 340 Project 2 - ast.cc
+ * Tyler Fichiera
+ */
+#include <iostream>
 #include "ast.h"
 
 using namespace std;

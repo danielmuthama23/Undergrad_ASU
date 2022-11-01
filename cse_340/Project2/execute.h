@@ -1,3 +1,7 @@
+/*
+ * CSE 340 Project 2 - execute.h
+ * Tyler Fichiera
+ */
 #ifndef _EXECUTE
 #define _EXECUTE
 const int MEMSIZE = 10000;

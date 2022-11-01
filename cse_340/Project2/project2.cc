@@ -1,4 +1,8 @@
 /*
+ * CSE 340 Project 2 - project2.cc
+ * Tyler Fichiera
+ */
+/*
  * Copyright (C) Mohsen Zohrevandi, 2017
  *               Rida Bazzi 2022
  * Do not share this file with anyone
@@ -10,6 +14,7 @@
 #include "tasks.h"
 
 using namespace std;
+
 
 int main (int argc, char* argv[])
 {
@@ -27,24 +32,22 @@ int main (int argc, char* argv[])
      */
 
     task = atoi(argv[1]);
-
-    Parser p;
+    
 
     switch (task) {
         case 1: // Task 1
-		    p.parse_and_generate_AST();
+		parse_and_generate_AST();
             break;
 
         case 2: // Task 2
-		    p.parse_and_type_check();
+		parse_and_type_check();
             break;
 
-        case 3: // TODO
-            instNode* code;
-            code = p.parse_and_generate_statement_list();
-            cout << "1234567890" << "testing" << "testing" << endl;
-            execute_inst_list(code);
-            cout << "1234567890" << "testing" << "testing" << endl;
+        case 3: instNode* code;
+		code = parse_and_generate_statement_list();
+		cout << "1234567890" << "testing" << "testing" << endl;
+		execute_inst_list(code);
+		cout << "1234567890" << "testing" << "testing" << endl;
             break;
 
         default:
@@ -53,3 +56,4 @@ int main (int argc, char* argv[])
     }
     return 0;
 }
+

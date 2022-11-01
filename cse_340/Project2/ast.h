@@ -1,3 +1,7 @@
+/*
+ * CSE 340 Project 2 - ast.h
+ * Tyler Fichiera
+ */
 #include <string>
 #include <vector>
 #include <iostream>

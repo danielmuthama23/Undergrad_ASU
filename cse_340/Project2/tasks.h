@@ -1,8 +1,12 @@
+/*
+ * CSE 340 Project 2 - tasks.h
+ * Tyler Fichiera
+ */
 #include <vector>
+#include <iostream>
 #include "execute.h"
 #include "lexer.h"
 #include "ast.h"
-#include <map>
 
 using namespace std;
 
@@ -92,11 +96,6 @@ class Parser {
         { "<", "<", "<", "<", "<", "e", "<", "e", "e", "<", "<", "a" } 
     };
 
-    // provided methods
-    void parse_and_generate_AST();
-    void parse_and_type_check();
-    instNode* parse_and_generate_statement_list();
-
     void parse_program();
     void parse_decl_section();
     vector<string> parse_scalar_decl_section();
@@ -136,3 +135,8 @@ class Parser {
     void print_type_errors();
 };
 /* --- DEFINTIONS FOR THE PARSER --- */
+
+/* ---- TOP LEVEL FUNCTIONS PROVIDED --- */
+void parse_and_generate_AST();
+void parse_and_type_check();
+instNode* parse_and_generate_statement_list();

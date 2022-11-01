@@ -249,12 +249,6 @@ ASTNode* Parser::parse_expr() {
         // and the next input symbol.
         if (stack.terminalPeek().term.lexeme == "$" && get_next_symbol() == "$") {
             StackNode s = stack.pop();
-            // if (head != NULL) {
-            //     instNode* n = head;
-            //     while (n->next != NULL)
-            //         n = n->next;
-            //     s.expr->instN = head;
-            // }
             return s.expr;
         }
 
@@ -673,8 +667,7 @@ bool Parser::has_expr_type_err(ASTNode *node) {
         } else if ((node->value == "+" || node->value == "-") && node->left->type == t_ARRAY && node->right->type == t_ARRAY) {
             node->type = t_ARRAY; // 6
             return false;
-        }
-        else if (node->value == "*" && node->left->type == t_ARRAY && node->right->type == t_ARRAY) {
+        } else if (node->value == "*" && node->left->type == t_ARRAY && node->right->type == t_ARRAY) {
             node->type = t_SCALAR; // 7
             return false;
         } else if (node->value == "[]" && node->left->type == t_ARRAY && node->right->type == t_SCALAR) {
@@ -782,24 +775,26 @@ void Parser::print_type_errors() {
 /* --- MAIN TASK HANDLERS --- */
 
 // Task 1
-void Parser::parse_and_generate_AST() {
-    parse_program();
-    ASTNode* root = astrees[0].root;
-    int h = astrees[0].tree_height(root);
+void parse_and_generate_AST() {
+    Parser p;
+    p.parse_program();
+    ASTNode* root = p.astrees[0].root;
+    int h = p.astrees[0].tree_height(root);
     for (int i = 1; i <= h; i++) 
-        astrees[0].print_tree(root, i);
+        p.astrees[0].print_tree(root, i);
 }
 
 // Task 2
-void Parser::parse_and_type_check() {
-    parse_program();
-    print_type_errors();
+void parse_and_type_check() {
+    Parser p;
+    p.parse_program();
+    p.print_type_errors();
 }
 
 // Task 3
-instNode* Parser::parse_and_generate_statement_list()
+instNode* parse_and_generate_statement_list()
 {
-    cout << "3" << endl;
+    // cout << "3" << endl;
 
     // The following is the hardcoded statement list 
     // generated for a specific program
