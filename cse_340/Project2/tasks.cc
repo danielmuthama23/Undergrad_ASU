@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <algorithm>
 #include "lexer.h"
 #include "execute.h"
 #include "tasks.h"
