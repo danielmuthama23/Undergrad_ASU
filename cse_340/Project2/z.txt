@@ -1,0 +1,25 @@
+// for(int i = 0; i < 10; i++){
+                //     if(i == 0){
+                //         head->lhsat = DIRECT;
+                //         head->lhs = first_i++; // c[i]
+                //         head->iType = ASSIGN_INST;
+                //         head->op1at = IMMEDIATE;
+                //         head->op1 = left->instN->lhs;
+                //         head->oper = OP_PLUS;
+                //         head->op2at = IMMEDIATE;
+                //         head->op2 = i;
+                //     }else{
+                //         prev->lhsat = DIRECT;
+                //         prev->lhs = first_i++; // c[i]
+                //         prev->iType = ASSIGN_INST;
+                //         prev->op1at = IMMEDIATE;
+                //         prev->op1 = left->instN->lhs;
+                //         prev->oper = OP_PLUS;
+                //         prev->op2at = IMMEDIATE;
+                //         prev->op2 = i;
+                //         head = append_to_end(head, prev);
+                //     }
+                //     instN = head;
+
+
+                // }

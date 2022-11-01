@@ -2,17 +2,6 @@
 
 using namespace std;
 
-// LOGIC
-void ASTree::init(ASTNode* l, ASTNode* r, int lo) {
-    root = new ASTNode();
-    ASTNode *root = new ASTNode(r, l, "=");
-    // root->value = "=";
-    // root->left = l;
-    // root->right = r;
-
-    line_no = lo;
-}
-
 // get height by getting the maximum depth from the root to a leaf
 int ASTree::tree_height(ASTNode* n) {
     if (n == NULL) return 0;

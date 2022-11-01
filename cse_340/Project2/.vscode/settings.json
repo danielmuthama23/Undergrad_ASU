@@ -10,6 +10,16 @@
         "functional": "cpp",
         "iterator": "cpp",
         "__locale": "cpp",
-        "locale": "cpp"
+        "locale": "cpp",
+        "algorithm": "cpp",
+        "__node_handle": "cpp",
+        "string": "cpp",
+        "__functional_base": "cpp",
+        "array": "cpp",
+        "istream": "cpp",
+        "memory": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp",
+        "atomic": "cpp"
     }
 }

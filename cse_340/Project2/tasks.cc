@@ -49,23 +49,21 @@ void Parser::parse_program() {
 
 // decl-section → scalar-decl-section array-decl-section
 void Parser::parse_decl_section() {
-    scalars = parse_scalar_decl_section();
-    arrays = parse_array_decl_section();
-    reverse(scalars.begin(), scalars.end());
-    reverse(arrays.begin(), arrays.end());
-
-    checker.set_declarations(arrays, scalars); 
-
-    for (string s : scalars) {
-        location_list.push_back(Location(next_index, s, l_SCALAR));
-        next_index++;
-    }
-    for (string a : arrays) {
-        location_list.push_back(Location(next_index, a, l_ARRAY));
-        next_index++;
+    curr_scalars = parse_scalar_decl_section();
+    for (string s : curr_scalars) {
+        Location l = Location(first_i, s, l_SCALAR);
+        location_list.push_back(l);
+        first_i++;
     }
 
-    last_index = next_index;
+    curr_arrays = parse_array_decl_section();
+    for (string a : curr_arrays) {
+        Location l = Location(first_i, a, l_SCALAR);
+        location_list.push_back(l);
+        first_i++;
+    }
+
+    second_i = first_i;
 }
 
 // scalar-decl-section → SCALAR id-list
@@ -85,10 +83,11 @@ vector<string> Parser::parse_array_decl_section() {
 vector<string> Parser::parse_id_list() {
     vector<string> parsed_ids;
     string id = expect(ID).lexeme;
-    if (peek(1) == ID) {
+    TokenType t = peek(1);
+    if (t == ID) {
         parsed_ids = parse_id_list();
         parsed_ids.push_back(id);
-    } else if (peek(1) == ARRAY || peek(1) == LBRACE) {
+    } else if (t == ARRAY || t == LBRACE) {
         parsed_ids.push_back(id);
     } else {
         syntax_error();
@@ -96,222 +95,225 @@ vector<string> Parser::parse_id_list() {
     return parsed_ids;
 }
 
+// block → LBRACE stmt-list RBRACE
 void Parser::parse_block() {
     expect(LBRACE);
     parse_stmt_list();
     expect(RBRACE);
 }
 
+// stmt-list → stmt
+// stmt-list → stmt stmt-list
 instNode* Parser::parse_stmt_list() {
     instNode* i = parse_stmt();
-    
     TokenType t = peek(1);
-    if (t == ID || t == OUTPUT) {
+
+    if (t == ID || t == OUTPUT) { // stmt-list → stmt
         append_to_end(i, parse_stmt_list());
         return i;
-    } else if (t == RBRACE) {
+    } else if (t == RBRACE) // stmt-list → stmt stmt-list
         return i;
-    } else {
+    else
         syntax_error();
-    }
 }
 
+// stmt → assign-stmt
+// stmt → output-stmt
 instNode* Parser::parse_stmt() {
-    instNode* i;
-
     TokenType t = peek(1);
-    if (t == ID) {
-        i = parse_assign_stmt();
-        return i;
-    } else if (t == OUTPUT) {
-        i = parse_output_stmt();
-        return i;
-    } else {
+    if (t == ID)
+        return parse_assign_stmt(); // stmt → assign-stmt
+    else if (t == OUTPUT)
+        return parse_output_stmt(); // stmt → output-stmt
+    else
         syntax_error();
-    }
 }
 
-// LOGIC frr!!
+// assign-stmt → variable-access EQUAL expr SEMICOLON
 instNode* Parser::parse_assign_stmt() {
-    ASTNode *lhs = parse_variable_access();
-    int ln = expect(EQUAL).line_no;
-    ASTNode *rhs = parse_expr();
-    astrees.push_back(ASTree(new ASTNode(rhs, lhs, "="), expect(SEMICOLON).line_no));
-    checker.type_check_assignment_stmt(rhs, lhs, ln);
+    ASTNode* left = parse_variable_access(); // variable-access
+    Token eqTok = expect(EQUAL); // EQUAL
+    ASTNode* right = parse_expr(); // expr
+    Token semTok = expect(SEMICOLON); // SEMICOLON
 
-    instNode *node = rhs->instN;
-    while (node->next != nullptr)
-    {
-        node = node->next;
-    }
+    ASTNode* equal_node = new ASTNode(right, left, "=");
+    astrees.push_back(ASTree(equal_node, semTok.line_no));
 
-    instNode *node2 = lhs->instN;
-    while (node2->next != nullptr)
-    {
-        node2 = node2->next;
-    }
+    bool has_expr_er = has_expr_type_err(right);
+    bool has_acc_er = has_access_type_err(left);
 
-    instNode *i = new instNode();
-    i->lhsat = (node2->lhs > last_index) ? INDIRECT : DIRECT;
-    i->lhs = node2->lhs;
+    if (has_expr_er)
+        type_errors.push_back(eqTok.line_no);
+    else if (has_acc_er)
+        type_errors.push_back(eqTok.line_no);
+
+    bool has_assign_er = has_assign_type_err(new ASTNode(right, left, "="));
+    if (has_assign_er)
+        assign_errors.push_back(eqTok.line_no);
+
+    // get to the end of both nodes for reverse search
+    instNode* right_node = right->instN;
+    while (right_node->next != NULL)
+        right_node = right_node->next;
+
+    instNode* left_node = left->instN;
+    while (left_node->next != NULL)
+        left_node = left_node->next;
+
+    instNode* i = new instNode();
     i->iType = ASSIGN_INST;
-    i->op1at = node->lhsat;
-    i->op1 = node->lhs;
+    i->lhs = left_node->lhs;
+    i->op1 = right_node->lhs;
+    i->op1at = right_node->lhsat;
     i->oper = OP_NOOP;
+    if (left_node->lhs > second_i)
+        i->lhsat = INDIRECT;
+    else
+        i->lhsat = DIRECT;
 
-    instNode * l = create_inst(lhs)->instN;
-    instNode * r = create_inst(rhs)->instN;
-
-    instNode *rt_me = i;
-
-    if (lhs->instN->op1 != -1 && rhs->instN->op1 != -1)
-    {
-        append_to_end(lhs->instN, rhs->instN);
-        append_to_end(lhs->instN, i);
-        rt_me = lhs->instN;
-    }
-    else if (rhs->instN->op1 == -1 && lhs->instN->op1 != -1)
-    {
-        append_to_end(lhs->instN, i);
-        rt_me = lhs->instN;
-    }
-    else if (rhs->instN->op1 != -1 && lhs->instN->op1 == -1)
-    {
-        append_to_end(rhs->instN, i);
-        rt_me = rhs->instN;
+    // check which nodes can be appended
+    if (left->instN->op1 > -1 && right->instN->op1 > -1) {
+        append_to_end(left->instN, right->instN);
+        return append_to_end(left->instN, i);
     }
 
-    return rt_me;
+    if (right->instN->op1 < 0 && left->instN->op1 > -1)
+        return append_to_end(left->instN, i);
+
+    if (right->instN->op1 > -1 && left->instN->op1 < 0)
+        return append_to_end(right->instN, i);
+
+    return i;
 }
 
+// output-stmt → OUTPUT variable-access SEMICOLON
 instNode* Parser::parse_output_stmt() {
-    int lo = expect(OUTPUT).line_no;
-    ASTNode* var_acc = parse_variable_access();
-    checker.type_check_output_stmt(var_acc, lo);
-    expect(SEMICOLON);
+    // logic very similar to parse_assign_stmt
+    Token outTok = expect(OUTPUT); // OUTPUT
+    ASTNode* var_acc = parse_variable_access(); // variable-access
+    expect(SEMICOLON); // SEMICOLON
+
+    // check output for type errs
+    if (has_access_type_err(var_acc))
+        type_errors.push_back(outTok.line_no);
 
     instNode* n = var_acc->instN;
-    while (n->next != nullptr) {
+    while (n->next != NULL)
         n = n->next;
-    }
 
-    // LOGIC @!!!@!!
-    instNode *i = new instNode();
+    instNode* i = new instNode();
     i->iType = OUTPUT_INST;
-    i->op1at = (n->lhs > last_index) ? INDIRECT : DIRECT;
     i->op1 = n->lhs;
+    if (n->lhs > second_i)
+        i->op1at = INDIRECT;
+    else
+        i->op1at = DIRECT;
 
-    if (var_acc->instN->op1 != -1) {
-        var_acc->instN = append_to_end(var_acc->instN, i);
-        return var_acc->instN;
-    } else {
-        return i;
-    }
+    if (var_acc->instN->op1 > -1)
+        return append_to_end(var_acc->instN, i);
+
+    return i;
 }
 
+// variable-access → ID
+// variable-access → ID LBRAC expr RBRAC
+// variable-access → ID LBRAC DOT RBRAC
 ASTNode* Parser::parse_variable_access() {
-    StackNode e = reduce({StackNode(TERM, NULL, expect(ID))}, {"primary"});
+    Token exTok = expect(ID); // ID
+    vector<StackNode> tmp = { StackNode(TERM, NULL, exTok) };
+    StackNode e = reduce(tmp, 7); // 7 = primary
     TokenType t = peek(1);
-    if (t == LBRAC) {
+    if (t == LBRAC) { // LBRAC
         stack.push(e);
         return parse_expr();
-    } else if (
-        t == EQUAL ||
-        t == SEMICOLON
-    ) {
+    } else if (t == EQUAL || t == SEMICOLON)
         return e.expr;
-    } else {
-        syntax_error();
-    }
+    syntax_error();
 }
 
+// RULES and their keys:
+// 0: expr → expr MINUS expr
+// 1: expr → expr PLUS expr
+// 2: expr → expr MULT expr
+// 3: expr → expr DIV expr
+// 4: expr → LPAREN expr RPAREN
+// 5: expr → expr LBRAC expr RBRAC
+// 6: expr → expr LBRAC DOT RBRAC
+// 7: expr → primary
 ASTNode* Parser::parse_expr() {
     instNode* head = NULL;
     
-    while (1) {
-        if (
-            stack.terminalPeek().term.lexeme == "$" &&
-            get_next_symbol() == "$"
-        ) {
+    while (true) {
+        // relationship between the terminal closest to the top of the stack
+        // and the next input symbol.
+        if (stack.terminalPeek().term.lexeme == "$" && get_next_symbol() == "$") {
             StackNode s = stack.pop();
-            if (head != NULL) {
-                instNode* n = head;
-                while (n->next != nullptr) {
-                    n = n->next;
-                }
-                s.expr->instN = head;
-            }
+            // if (head != NULL) {
+            //     instNode* n = head;
+            //     while (n->next != NULL)
+            //         n = n->next;
+            //     s.expr->instN = head;
+            // }
             return s.expr;
-        } else {
-            Token t = lexer.peek(1);
-            int r = index_of(stack.terminalPeek().term.token_type);
-            int c = index_of(t.token_type);
+        }
 
-            string oper = table[r][c];
+        Token t = lexer.peek(1);
+        int r = get_order_of(stack.terminalPeek().term.token_type);
+        int c = get_order_of(t.token_type);
+        // cout << "c: " << c << "r: " << r << endl;
 
-            // cout << "c: " << c << "r: " << r << endl;
-            
-            if (oper == "<" || oper == "=") {
-                t = lexer.GetToken();
+        string oper = table[r][c];
 
-                // NAMES
-                StackNode s_node;
-                s_node.type = TERM;
-                s_node.expr = NULL;
-                s_node.term = t;
+        if (oper == "<" || oper == "=") {
+            t = lexer.GetToken();
+            StackNode s_node = StackNode(TERM, NULL, t);
+            stack.push(s_node);
+        } else if (oper == ">") { 
+            // vector<string> rhs_v;
+            vector<StackNode> reduce_me;
+            StackNode lpt;
+            bool lpt_set = false;
 
-                stack.push(s_node);
-            } else if (oper == ">") { 
-                // LOGIC / NAMES !! all of this
-                vector<string> RHS = {};
-                vector<StackNode> reduce_me = {};
-                StackNode lpt = {};
-                bool lpt_set = false;
-                while (1)
-                {
-                    StackNode s = stack.pop();
-                    if (s.type == TERM)
-                    {
-                        lpt_set = true;
-                        lpt = s;
-                    }
-                    reduce_me.push_back(s);
-                    RHS.push_back(get_rhs(s));
-                    if (
-                        lpt_set &&
-                        stack.terminalTop().type == TERM &&
-                        table[index_of(stack.terminalPeek().term.token_type)][index_of(lpt.term.token_type)] == "<"
-                    )
-                        break;
+            vector<StackNode> rhs_nodes;
+            int rhs_rule = -1;
+
+            while (true) {
+                StackNode s = stack.pop();
+                if (s.type == TERM) {
+                    lpt_set = true;
+                    lpt = s;
                 }
-                reverse(RHS.begin(), RHS.end());
-                reverse(reduce_me.begin(), reduce_me.end());
+                reduce_me.push_back(s);
+                rhs_nodes.push_back(s);
+                int r_ = get_order_of(stack.terminalPeek().term.token_type);
+                int c_ = get_order_of(lpt.term.token_type);
+                if (lpt_set &&stack.terminalTop().type == TERM &&table[r_][c_] == "<")
+                    break;
+            }
 
-                if (is_valid_rule(RHS))
-                {
-                    StackNode E = reduce(reduce_me, RHS);
-                    stack.push(E);
+            reverse(rhs_nodes.begin(), rhs_nodes.end());
+            rhs_rule = rhs_rule_key(rhs_nodes);
 
-                    if (
-                        (E.expr->instN->oper == OP_PLUS ||
-                        E.expr->instN->oper == OP_MULT ||
-                        E.expr->instN->oper == OP_DIV ||
-                        E.expr->instN->oper == OP_MINUS) &&
-                        E.expr->wrapped == false
-                    ) {
-                        head = append_to_end(head, E.expr->instN);
-                    }
-                } else {
-                    syntax_error();
+            // cout << "rhs_rule: " << rhs_rule << endl;
+
+            reverse(reduce_me.begin(), reduce_me.end());
+
+            if (rhs_rule > -1) {
+                StackNode e = reduce(reduce_me, rhs_rule);
+                stack.push(e);
+
+                // check to make sure it is one of the arithmetic operators and not w
+                if (e.expr->instN->oper > 0 && e.expr->instN->oper < 5 && e.expr->w == false) {
+                    head = append_to_end(head, e.expr->instN);
                 }
             } else {
                 syntax_error();
             }
+        } else {
+            syntax_error();
         }
     }
 }
-
-void Parser::parse_primary() {}
 
 TokenType Parser::peek(int how_far) {
     return lexer.peek(how_far).token_type;
@@ -329,10 +331,11 @@ void Parser::syntax_error() {
     exit(1);
 }
 
+// add tail to end of linkedlist
 instNode* Parser::append_to_end(instNode* head, instNode* tail) {
-    if (head == NULL) {
+    if (head == NULL)
         head = tail;
-    } else {
+    else {
         instNode* n = head;
         while (n->next) {
             n = n->next;
@@ -342,351 +345,454 @@ instNode* Parser::append_to_end(instNode* head, instNode* tail) {
     return head;
 }
 
-// LOGIC
+// to determine the relationship between the terminal closest to the top of the stack
 string Parser::get_next_symbol() {
     TokenType t = peek(1);
-    TokenType t2 = peek(2);
     if (t == EQUAL || t == SEMICOLON) {
         return "$";
     } else if (t == RBRAC) {
-        if (t2 == EQUAL) {
+        if (peek(2) == EQUAL) {
             return "$";
         }
     } else {
-        return lexer.peek(1).lexeme;
+        return lexer.peek(1).lexeme; //  return the next token in all other cases.
     }
 }
 
-string Parser::get_rhs(StackNode s)
-{
-    string lexeme;
-    if (s.type == TERM)
-    {
-        if (s.term.token_type == NUM || s.term.token_type == ID)
-            lexeme = "primary";
-        else if (s.term.token_type == PLUS)
-            lexeme = "PLUS";
-        else if (s.term.token_type == MINUS)
-            lexeme = "MINUS";
-        else if (s.term.token_type == MULT)
-            lexeme = "MULT";
-        else if (s.term.token_type == DIV)
-            lexeme = "DIV";
-        else if (s.term.token_type == LPAREN)
-            lexeme = "LPAREN";
-        else if (s.term.token_type == RPAREN)
-            lexeme = "RPAREN";
-        else if (s.term.token_type == RBRAC)
-            lexeme = "RBRAC";
-        else if (s.term.token_type == LBRAC)
-            lexeme = "LBRAC";
-        else if (s.term.token_type == DOT)
-            lexeme = "DOT";
+int Parser::get_order_of(TokenType key) {
+    int i = 0;
+    for (TokenType t : op_pres_order) {
+        if (t == key) return i;
+        i++;
     }
-    else
-        lexeme = "expr";
-    return lexeme;
+    return op_pres_order.size();
 }
 
-// LOGIC !!
-int Parser::index_of(TokenType key)
-{
-    switch (key)
-    {
-    case PLUS:
-        return 0;
-    case MINUS:
-        return 1;
-    case MULT:
-        return 2;
-    case DIV:
-        return 3;
-    case LPAREN:
-        return 4;
-    case RPAREN:
-        return 5;
-    case LBRAC:
-        return 6;
-    case DOT:
+
+// RULES and their keys:
+// -1: invalid rule (check for this)
+// 0: expr → expr MINUS expr
+// 1: expr → expr PLUS expr
+// 2: expr → expr MULT expr
+// 3: expr → expr DIV expr
+// 4: expr → LPAREN expr RPAREN
+// 5: expr → expr LBRAC expr RBRAC
+// 6: expr → expr LBRAC DOT RBRAC
+// 7: expr → primary
+int Parser::rhs_rule_key(vector<StackNode> s) {
+    // 7: expr → primary
+    if (
+        s.at(0).type == TERM &&
+        (s.at(0).term.token_type == NUM || s.at(0).term.token_type == ID)
+    )
         return 7;
-    case RBRAC:
-        return 8;
-    case NUM:
-        return 9;
-    case ID:
-        return 10;
-    default:
-        return 11;
+
+    if (s.at(0).type == EXPR) {
+        // 0: expr → expr MINUS expr
+        if (s.at(1).term.token_type == MINUS && s.at(2).type == EXPR)
+            return 0;
+        // 1: expr → expr PLUS expr
+        if (s.at(1).term.token_type == PLUS && s.at(2).type == EXPR)
+            return 1;
+        // 2: expr → expr MULT expr
+        if (s.at(1).term.token_type == MULT && s.at(2).type == EXPR)
+            return 2;
+        // 3: expr → expr DIV expr
+        if (s.at(1).term.token_type == DIV && s.at(2).type == EXPR)
+            return 3;
     }
+    
+    // 4: expr → LPAREN expr RPAREN
+    if (
+        s.at(0).type == TERM &&
+        s.at(0).term.token_type == LPAREN &&
+        s.at(1).type == EXPR &&
+        s.at(2).term.token_type == RPAREN
+    )
+        return 4;
+
+    if (s.at(0).type == EXPR) {
+        // 5: expr → expr LBRAC expr RBRAC
+        if (
+            s.at(1).term.token_type == LBRAC &&
+            s.at(2).type == EXPR &&
+            s.at(3).term.token_type == RBRAC
+        )
+            return 5;
+        // 6: expr → expr LBRAC DOT RBRAC
+        if (
+            s.at(1).term.token_type == LBRAC &&
+            s.at(2).term.token_type == DOT &&
+            s.at(3).term.token_type == RBRAC
+        )
+            return 6;
+    }
+
+    // else return -1 which is an error / not valid
+    return -1;
 }
 
-// LOGIC / NAMES
-bool Parser::is_valid_rule(vector<string> rule) {
-    for (auto &expr : expr_rules) {
-        if (expr.second == rule)
-            return true;
-    }
-    return false;
-}
+StackNode Parser::reduce(vector<StackNode> n_stack, int rule_key) {
+    ASTNode* ast_node;
+    instNode* instN = new instNode();
 
-StackNode Parser::reduce(vector<StackNode> stk, vector<string> rhs) {
-    StackNode node;
-    node.type = EXPR;
-    ASTNode *tnode;
-    instNode *instN = new instNode();
-    if (rhs == vector<string>({"expr", "MINUS", "expr"}))
-    {
-        tnode = new ASTNode(stk[2].expr, stk[0].expr, t_ARRAY, o_MINUS, "-", "-");
-
+    // arithmetic operations
+    if (rule_key >= 0 && rule_key <= 3) {
+        if (rule_key == 0) {
+            ast_node = new ASTNode(n_stack.at(2).expr, n_stack.at(0).expr, t_ARRAY, o_MINUS, "-", "-");
+            instN->oper = OP_MINUS;
+        }
+        if (rule_key == 1) {
+            ast_node = new ASTNode(n_stack.at(2).expr, n_stack.at(0).expr, t_ARRAY, o_PLUS, "+", "+");
+            instN->oper = OP_PLUS;
+        }
+        if (rule_key == 2) {
+            ast_node = new ASTNode(n_stack.at(2).expr, n_stack.at(0).expr, t_ARRAY, o_MULT, "*", "*");
+            instN->oper = OP_MULT;
+        }
+        if (rule_key == 3) {
+            ast_node = new ASTNode(n_stack.at(2).expr, n_stack.at(0).expr, t_ARRAY, o_DIV, "/", "/");
+            instN->oper = OP_DIV;
+        }
         instN->lhsat = DIRECT;
-        instN->lhs = next_index++;
+        instN->lhs = first_i++;
         instN->iType = ASSIGN_INST;
-        instN->op1at = stk[0].expr->instN->lhsat;
-        instN->op1 = stk[0].expr->instN->lhs;
-        instN->oper = OP_MINUS;
-        instN->op2at = stk[2].expr->instN->lhsat;
-        instN->op2 = stk[2].expr->instN->lhs;
-    }
-    else if (rhs == vector<string>({"expr", "PLUS", "expr"}))
-    {
-        tnode = new ASTNode(stk[2].expr, stk[0].expr, t_ARRAY, o_PLUS, "+", "+");
+        instN->op1at = n_stack.at(0).expr->instN->lhsat;
+        instN->op1 = n_stack.at(0).expr->instN->lhs;
+        instN->op2at = n_stack.at(2).expr->instN->lhsat;
+        instN->op2 = n_stack.at(2).expr->instN->lhs;
+    } else if (rule_key == 4) {
+        ast_node = n_stack[1].expr;
+        ast_node->w = true;
+
+        instN = n_stack[1].expr->instN;
+    } else if (rule_key == 5) {
+        ast_node = new ASTNode(n_stack.at(2).expr, n_stack.at(0).expr, t_ARRAY, o_EXPR, "[]", "[]");
 
         instN->lhsat = DIRECT;
-        instN->lhs = next_index++;
-        instN->iType = ASSIGN_INST;
-        instN->op1at = stk[0].expr->instN->lhsat;
-        instN->op1 = stk[0].expr->instN->lhs;
-        instN->oper = OP_PLUS;
-        instN->op2at = stk[2].expr->instN->lhsat;
-        instN->op2 = stk[2].expr->instN->lhs;
-    }
-    else if (rhs == vector<string>({"expr", "MULT", "expr"}))
-    {
-        tnode = new ASTNode(stk[2].expr, stk[0].expr, t_ARRAY, o_MULT, "*", "*");
-
-        instN->lhsat = DIRECT;
-        instN->lhs = next_index++;
-        instN->iType = ASSIGN_INST;
-        instN->op1at = stk[0].expr->instN->lhsat;
-        instN->op1 = stk[0].expr->instN->lhs;
-        instN->oper = OP_MULT;
-        instN->op2at = stk[2].expr->instN->lhsat;
-        instN->op2 = stk[2].expr->instN->lhs;
-    }
-    else if (rhs == vector<string>({"expr", "DIV", "expr"}))
-    {
-        tnode = new ASTNode(stk[2].expr, stk[0].expr, t_ARRAY, o_DIV, "/", "/");
-
-        instN->lhsat = DIRECT;
-        instN->lhs = next_index++;
-        instN->iType = ASSIGN_INST;
-        instN->op1at = stk[0].expr->instN->lhsat;
-        instN->op1 = stk[0].expr->instN->lhs;
-        instN->oper = OP_DIV;
-        instN->op2at = stk[2].expr->instN->lhsat;
-        instN->op2 = stk[2].expr->instN->lhs;
-    }
-    else if (rhs == vector<string>({"LPAREN", "expr", "RPAREN"}))
-    {
-        tnode = stk[1].expr;
-        tnode->wrapped = true;
-
-        instN = stk[1].expr->instN;
-    }
-    else if (rhs == vector<string>({"expr", "LBRAC", "expr", "RBRAC"}))
-    {
-        tnode = new ASTNode(stk[2].expr, stk[0].expr, t_ARRAY, o_EXPR, "[]", "[]");
-
-        instN->lhsat = DIRECT;
-        instN->lhs = next_index++;
+        instN->lhs = first_i++;
         instN->iType = ASSIGN_INST;
         instN->op1at = IMMEDIATE;
-        instN->op1 = stk[0].expr->instN->lhs;
+        instN->op1 = n_stack.at(0).expr->instN->lhs;
         instN->oper = OP_PLUS;
-        instN->op2at = stk[2].expr->instN->lhsat;
-        instN->op2 = stk[2].expr->instN->lhs;
-    }
-    else if (rhs == vector<string>({"expr", "LBRAC", "DOT", "RBRAC"}))
-    {
-        tnode = new ASTNode(NULL, stk[0].expr, t_ARRAY, o_DOT, "[.]", "[.]");
+        instN->op2at = n_stack.at(2).expr->instN->lhsat;
+        instN->op2 = n_stack.at(2).expr->instN->lhs;
+    } else if (rule_key == 6) {
+        ast_node = new ASTNode(NULL, n_stack.at(0).expr, t_ARRAY, o_DOT, "[.]", "[.]");
 
         instN->lhsat = DIRECT;
-        instN->lhs = next_index++;
+        instN->lhs = first_i++;
         instN->iType = ASSIGN_INST;
         instN->op1at = IMMEDIATE;
-        instN->op1 = stk[0].expr->instN->lhs;
+        instN->op1 = n_stack.at(0).expr->instN->lhs;
         instN->oper = OP_NOOP;
-    }
-    else
-    { // primary
-        tnode = new ASTNode(NULL, NULL, t_ARRAY, o_NOOP, ((stk[0].term.token_type == NUM) ? ("NUM \"" + stk[0].term.lexeme + "\"") : ("ID \"" + stk[0].term.lexeme + "\"")), stk[0].term.lexeme);
-        if (stk[0].term.token_type == NUM)
-        {
-            tnode->is_num = true;
+    } else if (rule_key == 7) {
+        string a;
+        if (n_stack.at(0).term.token_type == NUM) {
+            string k = "NUM \"" + n_stack.at(0).term.lexeme + "\"";
+            ast_node = new ASTNode(NULL, NULL, t_ARRAY, o_NOOP, k, n_stack.at(0).term.lexeme);
+            ast_node->n = true;
             instN->lhsat = IMMEDIATE;
-            instN->lhs = stoi(stk[0].term.lexeme);
-        }
-        else
-        {
+            instN->lhs = stoi(n_stack.at(0).term.lexeme);
+        } else {
+            string k = "ID \"" + n_stack.at(0).term.lexeme + "\"";
+            ast_node = new ASTNode(NULL, NULL, t_ARRAY, o_NOOP, k, n_stack.at(0).term.lexeme);
             instN->lhsat = DIRECT;
-            instN->lhs = get_location(stk[0].term.lexeme);
+            instN->lhs = get_location(n_stack.at(0).term.lexeme);
         }
     }
-    tnode->instN = instN;
-    node.expr = tnode;
-    return node;
+    ast_node->instN = instN;
+
+    StackNode s_node;
+    s_node.type = EXPR;
+    s_node.expr = ast_node;
+    return s_node;
 }
 
-ASTNode* Parser::create_inst(ASTNode* node) {
-    ASTNode *rt_me = new ASTNode();
+ASTNode* Parser::create_inst(ASTNode* ast_node) {
+    ASTNode *rt = new ASTNode();
     instNode *instN = new instNode();
 
-    if (node == NULL) return rt_me;
-    if (node->left == NULL && node->right == NULL)
-    {
-        if (node->type == t_SCALAR || node->type == t_ARRAY)
-        {
-            instN->lhs = get_location(node->raw_value);
+    // base catcher to prevent accessor error?
+    if (ast_node == NULL) return rt;
+
+    if (ast_node->left == NULL && ast_node->right == NULL) {
+        if (ast_node->type == t_SCALAR || ast_node->type == t_ARRAY) {
+            instN->lhs = get_location(ast_node->unchanged_val);
             instN->lhsat = DIRECT;
-            rt_me->instN = instN;
-            return rt_me;
+            rt->instN = instN;
+            return rt;
+        } else if (ast_node->n) {
+            instN->lhs = stoi(ast_node->unchanged_val);
+            instN->lhsat = IMMEDIATE; // primary
+            rt->instN = instN;
+            return rt;
         }
-        else if (node->is_num)
-        {
-            instN->lhs = stoi(node->raw_value);
-            instN->lhsat = IMMEDIATE;
-            rt_me->instN = instN;
-            return rt_me;
-        }
-    }
-    else
-    {
-        ASTNode *right = create_inst(node->right);
-        ASTNode *left = create_inst(node->left);
-        if ((right->type == t_SCALAR && left->type == t_SCALAR) && (node->oper == o_PLUS || node->oper == o_MINUS || node->oper == o_MULT || node->oper == o_DIV))
-        {
+    } else {
+        ASTNode *right = create_inst(ast_node->right);
+        ASTNode *left = create_inst(ast_node->left);
+        if (
+            (right->type == t_SCALAR && left->type == t_SCALAR) &&
+            (ast_node->oper >= 0 && ast_node->oper <= 3)
+        ) {
             instN->lhsat = DIRECT;
-            instN->lhs = next_index++;
+            instN->lhs = first_i++;
             instN->iType = ASSIGN_INST;
             instN->op1at = left->instN->lhsat;
             instN->op1 = left->instN->lhs;
             instN->op2at = right->instN->lhsat;
             instN->op2 = right->instN->lhs;
-            switch (node->oper)
-            {
-            case o_PLUS:
-                instN->oper = OP_PLUS;
-                break;
-            case o_MINUS:
-                instN->oper = OP_MINUS;
-                break;
-            case o_MULT:
-                instN->oper = OP_MULT;
-                break;
-            case o_DIV:
-                instN->oper = OP_DIV;
-                break;
-            default:
-                cout << "invalid operation type !!!!\n";
-                break;
-            }
-            rt_me->instN = instN;
-            return rt_me;
-        }else if(left->type == t_ARRAY && right->type == t_SCALAR && (node->oper == o_EXPR)){
+            instN->oper = op_to_optype(ast_node->oper);
+            rt->instN = instN;
+            return rt;
+        } else if (
+            left->type == t_ARRAY &&
+            right->type == t_SCALAR &&
+            (ast_node->oper == o_EXPR)
+        ) {
             // add undefined part
             instN->lhsat = DIRECT;
-            instN->lhs = next_index++;
+            instN->lhs = first_i++;
             instN->iType = ASSIGN_INST;
             instN->op1at = IMMEDIATE;
             instN->op1 = left->instN->lhs;
             instN->oper = OP_PLUS;
             instN->op2at = right->instN->lhsat;
             instN->op2 = right->instN->lhs;
-            rt_me->instN = instN;
-            return rt_me;
-        }else if((right->oper == o_DOT && left->oper == o_DOT) && (left->type == t_ARRAY && right->type == t_ARRAY) && (node->oper == o_PLUS || node->oper == o_MINUS || node->oper == o_MULT)){
+            rt->instN = instN;
+            return rt;
+        } else if (
+            (right->oper == o_DOT && left->oper == o_DOT) &&
+            (left->type == t_ARRAY && right->type == t_ARRAY) &&
+            (ast_node->oper >= 0 && ast_node->oper <= 2) // make sure it is artith
+        ) {
             instNode * head = new instNode(), *prev = new instNode();
-            switch (node->oper)
-            {
-            case o_PLUS:
-                instN->oper = OP_PLUS;
-
-                
-
-                for(int i = 0; i < 10; i++){
-                    if(i == 0){
-                        head->lhsat = DIRECT;
-                        head->lhs = next_index++; // c[i]
-                        head->iType = ASSIGN_INST;
-                        head->op1at = IMMEDIATE;
-                        head->op1 = left->instN->lhs;
-                        head->oper = OP_PLUS;
-                        head->op2at = IMMEDIATE;
-                        head->op2 = i;
-                    }else{
-                        prev->lhsat = DIRECT;
-                        prev->lhs = next_index++; // c[i]
-                        prev->iType = ASSIGN_INST;
-                        prev->op1at = IMMEDIATE;
-                        prev->op1 = left->instN->lhs;
-                        prev->oper = OP_PLUS;
-                        prev->op2at = IMMEDIATE;
-                        prev->op2 = i;
-                        head = append_to_end(head, prev);
-                    }
-                    instN = head;
-
-
-                }
-
-                break;
-            case o_MINUS:
-                instN->oper = OP_MINUS;
-                break;
-            case o_MULT:
-                instN->oper = OP_MULT;
-                break;
-            default:
-                cout << "invalid operation type !!!?!\n";
-                break;
-            }
-
-            rt_me->instN = instN;
-            return rt_me;
-
-
+            instN->oper = op_to_optype(ast_node->oper);
+            rt->instN = instN;
+            return rt;
         }
     }
 }
 
 int Parser::get_location(string lex) {
-    for (const auto &l : location_list) {
-        if (l.lex == lex) {
-            return l.addr;
+    for (Location l : location_list)
+        if (l.lex == lex) return l.addr;
+    return -1;
+}
+
+OpType Parser::op_to_optype(Operator op) {
+    // for arithmetic ops only, dont need the rest
+    switch (op) {
+        case o_MINUS:
+            return OP_MINUS;
+        case o_PLUS:
+            return OP_PLUS;
+        case o_MULT:
+            return OP_MULT;
+        case o_DIV:
+            return OP_DIV;
+        default:
+            cout << "error in op_to_operator!" << endl;
+            exit(1);
+    }
+}
+
+// helper function
+bool contains(vector<string> vec, string value) {
+    return count(vec.begin(), vec.end(), value);
+}
+
+// used for type checking
+bool is_arith(string c) {
+    return (c == "+" || c == "-" || c == "*" || c == "/");
+}
+
+/*
+1. If x is a lexeme that appears in the id-list of the scalar-decl-section, then the expression x has type scalar.
+2. The type of an expression consisting of a single NUM is scalar.
+3. If x appears in the id-list of the array-decl-section, then the expression x[.] has type array.
+4. If x appears in the id-list of the array-decl-section, and expr has type scalar, then the expression x[expr] has type scalar.
+5. If expr1 and expr2 have type scalar, then expr1 OP expr2(where OP is PLUS, MINUS, MULT or DIV ) has type scalar.
+6. If expr1 and expr2 have type array, then expr1 OP expr2(where OP is PLUS or MINUS) has type array.
+7. If expr1 and expr2 have type array, then expr1 MULT expr2 has type scalar.
+8. If expr1 has type array and expr2 has type scalar, then expr1 [expr2] has type scalar.
+9. If expr1 has type scalar, then expr1 [.] has type array.
+10. If expr2 has type other than scalar, then expr1 [expr2] has type error.
+11. If expr1 has type scalar or error, then expr1 [expr2] has type error.
+12. If expr1 and expr2 have different types, then expr1 OP expr2 (where OP is PLUS ,MINUS MULT or DIV ) has type error.
+13. If expr1 and expr2 have type array, then expr1 DIV expr2 has type error.
+14. If x is a lexeme that does not appear in the id-list of the scalar-decl-section or the id-list of the array-decl-section, then the expression x has type error.
+15. If none of the above conditions hold, the expression has type error.
+*/
+bool Parser::has_expr_type_err(ASTNode *node) {
+    if (node->left == NULL && node->right == NULL) {
+        if (contains(curr_scalars, node->unchanged_val)) {
+            node->type = t_SCALAR; // 1
+            return false;
+        } else if (contains(curr_arrays, node->unchanged_val)) {
+            node->type = t_ARRAY_DECL; // 1
+            return false;
+        } else if (node->n) {
+            node->type = t_SCALAR; // 2
+            return false;
+        } else if (
+            !contains(curr_scalars, node->unchanged_val) &&
+            !contains(curr_arrays, node->unchanged_val)
+        ) {
+            node->type = t_ERROR;  // 14
+            return true;
+        } else {
+            node->type = t_ERROR; // 15
+            return true;
+        }
+    } else {
+        bool leftside_errs = has_expr_type_err(node->left);
+        bool rightside_errs = node->value != "[.]" ?
+            has_expr_type_err(node->right) : false;
+        if (
+            node->value == "[]" &&
+            node->left->type == t_ARRAY_DECL &&
+            node->right->type == t_SCALAR
+        ) {
+            node->type = t_SCALAR; // 4
+            return false;
+        } else if (
+            node->value == "[.]" &&
+            node->left->type == t_ARRAY_DECL &&
+            node->right == NULL
+        ) {
+            node->type = t_ARRAY; // 3
+            return false;
+        } else if (
+            is_arith(node->value) && node->left->type == t_SCALAR &&
+            node->right->type == t_SCALAR
+        ) {
+            node->type = t_SCALAR; // 5
+            return false;
+        } else if ((node->value == "+" || node->value == "-") && node->left->type == t_ARRAY && node->right->type == t_ARRAY) {
+            node->type = t_ARRAY; // 6
+            return false;
+        }
+        else if (node->value == "*" && node->left->type == t_ARRAY && node->right->type == t_ARRAY) {
+            node->type = t_SCALAR; // 7
+            return false;
+        } else if (node->value == "[]" && node->left->type == t_ARRAY && node->right->type == t_SCALAR) {
+            node->type = t_SCALAR; // 8
+            return false;
+        } else if (node->value == "[.]" && node->left->type == t_SCALAR && node->right == NULL) {
+            node->type = t_ARRAY; // 9
+            return false;
+        } else if (node->value == "[]" && ((node->left->type == t_SCALAR && node->left->type == t_ERROR) || (node->right->type != t_SCALAR))) {
+            node->type = t_ERROR; // 10 / 11
+            return true;
+        }
+        else if (is_arith(node->value) && (node->left->type != node->right->type)) {
+            node->type = t_ERROR; // 12
+            return true;
+        } else if (node->value == "/" && node->left->type == t_ARRAY && node->right->type == t_ARRAY) {
+            node->type = t_ERROR; // 13
+            return true;
+        } else {
+            node->type = t_ERROR; // 15
+            return true;
+        }
+
+        return (leftside_errs || rightside_errs);
+    }
+
+    return false;
+}
+
+bool Parser::has_assign_type_err(ASTNode *node) {
+    if (!(node->left == NULL && node->right == NULL)) {
+        if (node->left->type == node->right->type) {
+            node->type = node->left->type;
+            return false;
+        } else if (node->left->type == t_ARRAY && node->right->type == t_SCALAR) {
+            node->type = t_ARRAY;
+            return false;
+        } else {
+            node->type = t_ERROR;
+            return true;
         }
     }
-    return -1;
+    return false;
+}
+
+/*
+1. If x is a lexeme that appears in the id-list of the scalar-decl-section, then the variable access x has type scalar.
+2. If x is a lexeme that appears in the id-list of the array-decl-section and expr has type scalar, then x[expr] has type scalar.
+3. If x is a lexeme that appears in the id-list of the array-decl-section, then x[.] has type array.
+4. If x is a lexeme that does not appear in the id-list of the scalar-decl-section then the variable access x has type error.
+5. If x is a lexeme that does not appear in the id-list of the of the array-decl-section, then the variable access x[.] has type error.
+6. If x is a lexeme that does not appear in the id-list of the array-decl-section, then the variable access x[expr] has type error.
+*/
+bool Parser::has_access_type_err(ASTNode *node) {
+    bool acc = false;
+    if (node->left == NULL && node->right == NULL) {
+        if (contains(curr_scalars, node->unchanged_val)) {
+            node->type = t_SCALAR; // 1
+            return false;
+        } else {
+            node->type = t_ERROR; // 4
+            return true;
+        }
+    } else {
+        bool expr = false;
+        if (node->value != "[.]")
+            expr = has_expr_type_err(node->right);
+        if (node->value == "[]" && contains(curr_arrays, node->left->unchanged_val) && node->right->type == t_SCALAR) {
+            node->type = t_SCALAR; // 2
+        } else if (node->value == "[.]" && contains(curr_arrays, node->left->unchanged_val)) {
+            node->type = t_ARRAY; // 3
+        // } else if (node->value == "[.]" && contains(curr_arrays, node->left->unchanged_val)) {
+        //     node->type = t_ERROR; // 5
+        //     acc = true;
+        } else if (node->value == "[]" && contains(curr_arrays, node->left->unchanged_val)) {
+            node->type = t_ERROR; // 6
+            acc = true;
+        } else {
+            node->type = t_ERROR; // default err
+            acc = true;
+        }
+
+        return (expr || acc);
+    }
+
+    return acc;
+}
+
+void Parser::print_type_errors() {
+    if (type_errors.size() == 0) {
+        if (assign_errors.size() == 0)
+            cout << "Amazing! No type errors here :)\n";
+        else {
+            cout << "The following assignment(s) is/are invalid :(\n\n";
+            for (int line : assign_errors)
+                cout << "Line " << line << endl;
+        }
+        return;
+    }
+    cout << "Disappointing expression type error :(\n\n";
+    for (int line : type_errors)
+        cout << "Line " << line << endl;
 }
 
 /* --- MAIN TASK HANDLERS --- */
 
 // Task 1
-void Parser::parse_and_generate_AST()
-{
+void Parser::parse_and_generate_AST() {
     parse_program();
     ASTNode* root = astrees[0].root;
     int h = astrees[0].tree_height(root);
-    for (int i = 1; i <= h; i++)
-    {
+    for (int i = 1; i <= h; i++) 
         astrees[0].print_tree(root, i);
-    }
 }
 
 // Task 2
-void Parser::parse_and_type_check()
-{
+void Parser::parse_and_type_check() {
     parse_program();
-    checker.print_type_errors();
+    print_type_errors();
 }
 
 // Task 3
@@ -846,237 +952,3 @@ instNode* Parser::parse_and_generate_statement_list()
 }
 
 /* --- MAIN TASK HANDLERS --- */
-
-bool in_vector(vector<string> vec, string value)
-{
-    return count(vec.begin(), vec.end(), value);
-}
-
-int TypeChecker::type_check_expr(ASTNode *node)
-{
-    // 1 = good , 2 = type error, 3 = assign error
-    int result = 1;
-    if (node->left == NULL && node->right == NULL)
-    {
-        if (in_vector(scalars, node->raw_value)) // rule 1
-        {
-            node->type = t_SCALAR;
-        }
-        else if (in_vector(arrays, node->raw_value))
-        {
-            node->type = t_ARRAY_DECL;
-        }
-        else if (node->is_num) // rule 2
-        {
-
-            node->type = t_SCALAR;
-        }
-        else if (!in_vector(scalars, node->raw_value) && !in_vector(arrays, node->raw_value)) // rule 14
-        {
-            node->type = t_ERROR;
-            result = 2;
-        }
-        else // rule 15
-        {
-            node->type = t_ERROR;
-            result = 2;
-        }
-    }
-    else
-    {
-        int ls = type_check_expr(node->left);
-        int rs = (node->value != "[.]" ? type_check_expr(node->right) : 1);
-        if (node->value == "[]" && node->left->type == t_ARRAY_DECL && node->right->type == t_SCALAR) // rule 4
-        {
-            node->type = t_SCALAR;
-        }
-        else if (node->value == "[.]" && node->left->type == t_ARRAY_DECL && node->right == NULL) // rule 3
-        {
-            node->type = t_ARRAY;
-            // cout << "hi\n";
-        }
-        else if ((node->value == "+" || node->value == "-" || node->value == "*" || node->value == "/") && node->left->type == t_SCALAR && node->right->type == t_SCALAR)
-        {
-            node->type = t_SCALAR; // rule 5
-        }
-        else if ((node->value == "+" || node->value == "-") && node->left->type == t_ARRAY && node->right->type == t_ARRAY) // rule 6
-        {
-            node->type = t_ARRAY;
-        }
-        else if (node->value == "*" && node->left->type == t_ARRAY && node->right->type == t_ARRAY) // rule 7
-        {
-            node->type = t_SCALAR;
-        }
-        else if (node->value == "[]" && node->left->type == t_ARRAY && node->right->type == t_SCALAR) // rule 8
-        {
-            node->type = t_SCALAR;
-        }
-        else if (node->value == "[.]" && node->left->type == t_SCALAR && node->right == NULL) // rule 9
-        {
-            node->type = t_ARRAY;
-        }
-        else if (node->value == "[]" && ((node->left->type == t_SCALAR && node->left->type == t_ERROR) || (node->right->type != t_SCALAR)))
-        { // rule 10 and 11
-            node->type = t_ERROR;
-            result = 2;
-        }
-        else if ((node->value == "+" || node->value == "-" || node->value == "*" || node->value == "/") && (node->left->type != node->right->type))
-        { // rule 12
-            node->type = t_ERROR;
-            result = 2;
-        }
-        else if (node->value == "/" && node->left->type == t_ARRAY && node->right->type == t_ARRAY)
-        { // rule 13
-            node->type = t_ERROR;
-            result = 2;
-        }
-        else // rule 15
-        {
-            node->type = t_ERROR;
-            result = 2;
-        }
-
-        result = ((ls == 2 || rs == 2) ? 2 : result);
-    }
-
-    return result;
-}
-
-int TypeChecker::type_check_assignment(ASTNode *node)
-{
-    // 1 = good , 2 = type error, 3 = assign error
-    int result = 1;
-    if (!(node->left == NULL && node->right == NULL))
-    {
-        if (node->left->type == node->right->type)
-        {
-            node->type = node->left->type;
-        }
-        else if (node->left->type == t_ARRAY && node->right->type == t_SCALAR)
-        {
-            node->type = t_ARRAY;
-        }
-        else
-        {
-            node->type = t_ERROR;
-            result = 2;
-        }
-    }
-    return result;
-}
-
-int TypeChecker::type_check_var_access(ASTNode *node)
-{
-    // 1 = good , 2 = type error, 3 = assign error
-    int result = 1;
-    if (node->left == NULL && node->right == NULL)
-    {
-        if (in_vector(scalars, node->raw_value)) // rule 1
-        {
-            node->type = t_SCALAR;
-        }
-        else // rule 4
-        {
-            node->type = t_ERROR;
-            result = 2;
-        }
-    }
-    else
-    {
-        int expr = 1;
-        if (node->value != "[.]")
-        {
-            expr = type_check_expr(node->right);
-        }
-
-        if (node->value == "[]" && in_vector(arrays, node->left->raw_value) && node->right->type == t_SCALAR) // rule 2
-        {
-            node->type = t_SCALAR;
-        }
-        else if (node->value == "[.]" && in_vector(arrays, node->left->raw_value)) // rule 3
-        {
-            node->type = t_ARRAY;
-        }
-        else if (node->value == "[.]" && in_vector(arrays, node->left->raw_value)) // rule 5
-        {
-            node->type = t_ERROR;
-            result = 2;
-        }
-        else if (node->value == "[]" && in_vector(arrays, node->left->raw_value)) // rule 6
-        {
-            node->type = t_ERROR;
-            result = 2;
-        }
-        else
-        {
-            node->type = t_ERROR;
-            result = 2;
-        }
-
-        result = ((expr == 2) ? 2 : result);
-    }
-
-    return result;
-}
-
-void TypeChecker::set_declarations(vector<string> a, vector<string> s)
-{
-    arrays = a;
-    scalars = s;
-}
-
-void TypeChecker::type_check_assignment_stmt(ASTNode *rhs, ASTNode *lhs, const int ln)
-{
-    int e = type_check_expr(rhs);
-    int v = type_check_var_access(lhs);
-
-    if (e == 2)
-    {
-        type_errors.push_back(ln);
-    }
-    else if (v == 2)
-    {
-        type_errors.push_back(ln);
-    }
-
-    int assn = type_check_assignment(new ASTNode(rhs, lhs, "="));
-    if (assn == 2)
-    {
-        assign_errors.push_back(ln);
-    }
-}
-
-void TypeChecker::type_check_output_stmt(ASTNode *va, const int ln)
-{
-    if (type_check_var_access(va) == 2)
-    {
-        type_errors.push_back(ln);
-    }
-}
-
-void TypeChecker::print_type_errors()
-{
-    if (type_errors.empty())
-    {
-        if (assign_errors.empty())
-        {
-            cout << "Amazing! No type errors here :)\n";
-        }
-        else
-        {
-            cout << "The following assignment(s) is/are invalid :(\n\n";
-            for (auto line : assign_errors)
-            {
-                cout << "Line " << line << "\n";
-            }
-        }
-    }
-    else
-    {
-        cout << "Disappointing expression type error :(\n\n";
-        for (auto line : type_errors)
-        {
-            cout << "Line " << line << "\n";
-        }
-    }
-}
