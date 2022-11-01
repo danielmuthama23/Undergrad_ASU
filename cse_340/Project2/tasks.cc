@@ -1,3 +1,7 @@
+/*
+ * CSE 340 Project 2 - tasks.cc
+ * Tyler Fichiera
+ */
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -545,7 +549,6 @@ ASTNode* Parser::create_inst(ASTNode* ast_node) {
             right->type == t_SCALAR &&
             (ast_node->oper == o_EXPR)
         ) {
-            // add undefined part
             instN->lhsat = DIRECT;
             instN->lhs = first_i++;
             instN->iType = ASSIGN_INST;
@@ -679,8 +682,7 @@ bool Parser::has_expr_type_err(ASTNode *node) {
         } else if (node->value == "[]" && ((node->left->type == t_SCALAR && node->left->type == t_ERROR) || (node->right->type != t_SCALAR))) {
             node->type = t_ERROR; // 10 / 11
             return true;
-        }
-        else if (is_arith(node->value) && (node->left->type != node->right->type)) {
+        } else if (is_arith(node->value) && (node->left->type != node->right->type)) {
             node->type = t_ERROR; // 12
             return true;
         } else if (node->value == "/" && node->left->type == t_ARRAY && node->right->type == t_ARRAY) {
@@ -739,9 +741,6 @@ bool Parser::has_access_type_err(ASTNode *node) {
             node->type = t_SCALAR; // 2
         } else if (node->value == "[.]" && contains(curr_arrays, node->left->unchanged_val)) {
             node->type = t_ARRAY; // 3
-        // } else if (node->value == "[.]" && contains(curr_arrays, node->left->unchanged_val)) {
-        //     node->type = t_ERROR; // 5
-        //     acc = true;
         } else if (node->value == "[]" && contains(curr_arrays, node->left->unchanged_val)) {
             node->type = t_ERROR; // 6
             acc = true;
