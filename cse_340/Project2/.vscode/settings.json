@@ -1,5 +1,15 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "new": "cpp",
+        "ios": "cpp",
+        "iosfwd": "cpp",
+        "vector": "cpp",
+        "map": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "__locale": "cpp",
+        "locale": "cpp"
     }
 }
