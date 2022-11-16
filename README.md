@@ -3,15 +3,15 @@
 
 An archive of all my code submitted for undergrad
 
-| Class   | Name                                      | Semester   |
-|---------|-------------------------------------------|------------|
-| CSE 110 | Principles of Programming                 | Fall '20   |
-| CSE 205 | Object-Oriented Programming               | Spring '21 |
-| CSE 230 | Computer Organization / Assembly Language | Spring '22 |
-| CSE 240 | Intro to Programming Languages            | Fall '21   |
-| CSE 310 | Data Structures and Algorithms            | Summer '22 |
-| CSE 330 | Operating Systems                         | Fall '22   |
-| CSE 340 | Principles of Programming Languages       | Fall '22   |
-| CSE 360 | Intro to Software Engineering             | Spring '22 |
-| CSE 365 | Information Assurance                     | Spring '22 |
-| CSE 445 | Distributed Software Development          | Fall '22   |
+| Class   | Name                                      | Semester   | Language(s)
+|---------|-------------------------------------------|------------|-------------------|
+| CSE 110 | Principles of Programming                 | Fall '20   | Java              |
+| CSE 205 | Object-Oriented Programming               | Spring '21 | Java              |
+| CSE 230 | Computer Organization / Assembly Language | Spring '22 | Assembly          |
+| CSE 240 | Intro to Programming Languages            | Fall '21   | C, C++, Scheme    |
+| CSE 310 | Data Structures and Algorithms            | Summer '22 | C++               |
+| CSE 330 | Operating Systems                         | Fall '22   | C                 |
+| CSE 340 | Principles of Programming Languages       | Fall '22   | C++               |
+| CSE 360 | Intro to Software Engineering             | Spring '22 | Java              |
+| CSE 365 | Information Assurance                     | Spring '22 | C, Python, Shell  |
+| CSE 445 | Distributed Software Development          | Fall '22   | C#                |
