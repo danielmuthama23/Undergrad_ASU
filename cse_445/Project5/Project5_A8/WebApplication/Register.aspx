@@ -16,6 +16,9 @@
     <br />
     <asp:Label ID="Label5" runat="server" Text="** Password must have at least one uppercase, one number, and be at least 8 characters long"></asp:Label>
     <br />
+    <asp:Image ID="VerifierImage" runat="server" />
+    <asp:TextBox ID="ImageVerifyText" runat="server" ></asp:TextBox>
+    <br />
     <asp:Button ID="RegisterButton" runat="server" Text="Register" OnClick="RegisterButton_Click" />
     <asp:Label ID="RegisterResLabel" runat="server" Text=""></asp:Label>
 </asp:Content>

@@ -14,19 +14,12 @@ namespace WebApplication
     public partial class Login : Page
     {
         private string role = null;
-        private string verifyImgText = getVerifyCode();
-
-        public Login()
-        {
-            System.Diagnostics.Debug.WriteLine("dsf");
-            //verifyImgText = getVerifyCode();
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             string VERIFIER_API_LINK = "https://venus.sod.asu.edu/WSRepository/Services/ImageVerifier/Service.svc/GetImage/";
 
-            VerifierImage.ImageUrl = VERIFIER_API_LINK + verifyImgText;
+            VerifierImage.ImageUrl = VERIFIER_API_LINK + Handler.VerifyImageCode;
         }
 
         protected void LoginButton_Click(object sender, EventArgs e)
@@ -38,10 +31,10 @@ namespace WebApplication
             )
             {
                 System.Diagnostics.Debug.WriteLine(ImageVerifyText.Text);
-                System.Diagnostics.Debug.WriteLine("here: " + verifyImgText);
-                if (ImageVerifyText.Text != verifyImgText)
+                System.Diagnostics.Debug.WriteLine("here: " + Handler.VerifyImageCode);
+                if (ImageVerifyText.Text != Handler.VerifyImageCode)
                 {
-                    verifyImgText = getVerifyCode();
+                    //Handler.VerifyImageCode = Handler.getVerifyCode();
                     LoginResMessage.Text = "Invalid image verifier text!";
                     return;
                 }
@@ -100,24 +93,6 @@ namespace WebApplication
             }
 
             return null;
-        }
-
-        private static string getVerifyCode()
-        {
-            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-            var random = new Random();
-
-            string res = "";
-
-            // verify using 5 characters
-            for (int i = 0; i < 5; i++)
-            {
-                res += chars[random.Next(chars.Length)];
-                //System.Diagnostics.Debug.WriteLine(verifyImgText);
-            }
-
-            return res;
         }
     }
 }

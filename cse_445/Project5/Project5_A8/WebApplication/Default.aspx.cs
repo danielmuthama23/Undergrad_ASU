@@ -13,8 +13,8 @@ namespace WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("here");
-            System.Diagnostics.Debug.WriteLine(User.Identity.IsAuthenticated);
+            //System.Diagnostics.Debug.WriteLine("here");
+            //System.Diagnostics.Debug.WriteLine(User.IsInRole("Member"));
 
             // get the current role from xml files and add to custom role provider
             if (User.Identity.IsAuthenticated)
@@ -40,6 +40,8 @@ namespace WebApplication
                         {
                             System.Diagnostics.Debug.WriteLine(User.Identity.Name);
                             Handler.CurrentRole = file;
+                            Handler.CurrentEmail = user.ChildNodes[3].InnerText;
+                            Handler.CurrentName = user.ChildNodes[2].InnerText;
                             stream.Close();
                             return;
                         }

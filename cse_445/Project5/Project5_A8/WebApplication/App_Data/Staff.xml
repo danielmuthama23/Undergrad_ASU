@@ -1,2 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<StaffMembers></StaffMembers>
+<StaffMembers>
+	<Staff>
+	    <Username>tfichiera3</Username>
+        <EncryptedPass>3vArjx5QSslBjjXvbsc5JA==</EncryptedPass>
+        <FullName>Tyler Jake</FullName>
+        <Email>tyler@asu.edu</Email>
+	</Staff>
+	<Staff>
+		<Username>TA</Username>
+		<EncryptedPass>Fl/v62Gyl8/V8cX/VNiTlA==</EncryptedPass>
+		<FullName>TA Demo</FullName>
+		<Email>ta@asu.edu</Email>
+	</Staff>
+</StaffMembers>

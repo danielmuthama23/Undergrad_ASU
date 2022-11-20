@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using System.Web.Security;
 using Crypt;
+using Providers;
 
 namespace WebApplication
 {
@@ -15,7 +16,9 @@ namespace WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string VERIFIER_API_LINK = "https://venus.sod.asu.edu/WSRepository/Services/ImageVerifier/Service.svc/GetImage/";
 
+            VerifierImage.ImageUrl = VERIFIER_API_LINK + Handler.VerifyImageCode;
         }
 
         protected void RegisterButton_Click(object sender, EventArgs e)
@@ -24,9 +27,17 @@ namespace WebApplication
                 UsernameInput.Text != "" &&
                 PasswordInput.Text != "" &&
                 FullNameInput.Text != "" &&
-                EmailInput.Text != ""
+                EmailInput.Text != "" &&
+                ImageVerifyText.Text != ""
             )
             {
+                if (ImageVerifyText.Text != Handler.VerifyImageCode)
+                {
+                    //Handler.VerifyImageCode = Handler.getVerifyCode();
+                    RegisterResLabel.Text = "Invalid image verifier text!";
+                    return;
+                }
+
                 string username = UsernameInput.Text;
                 string password = PasswordInput.Text;
                 string fullName = FullNameInput.Text;

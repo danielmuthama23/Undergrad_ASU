@@ -9,6 +9,27 @@ namespace Providers
     public static class Handler
     {
         public static string CurrentRole = null;
+        public static string CurrentName = null;
+        public static string CurrentEmail = null;
+        public static string VerifyImageCode = getVerifyCode();
+
+        public static string getVerifyCode()
+        {
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            var random = new Random();
+
+            string res = "";
+
+            // verify using 5 characters
+            for (int i = 0; i < 5; i++)
+            {
+                res += chars[random.Next(chars.Length)];
+                //System.Diagnostics.Debug.WriteLine(verifyImgText);
+            }
+
+            return res;
+        }
     }
 
     public class CustomRoleProvider : RoleProvider
