@@ -78,7 +78,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Tyler Fichiera - Project 5</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Group 56 - Project 5</p>
             </footer>
         </div>
 

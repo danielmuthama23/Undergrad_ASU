@@ -15,12 +15,12 @@ namespace WebApplication
     {
 
         /// <summary>
-        /// Test control.
+        /// ActiveUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Test;
+        protected global::System.Web.UI.WebControls.Label ActiveUsers;
     }
 }

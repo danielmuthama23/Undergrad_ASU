@@ -7,8 +7,10 @@ namespace Crypt
 {
     public class Crypt
     {
+        // key used for encrypt and decrypt
         private static readonly string key = "b14ca5898a4e4133bbce2ea2315a1916";
 
+        // function used for encryption with a given password as input
         public static string Encrypt(string password)
         {
             byte[] iv = new byte[16];
@@ -42,6 +44,7 @@ namespace Crypt
             return Convert.ToBase64String(array);
         }
 
+        // function used for decryption with an encrypted password input
         public static string Decrypt(string encryptedPass)
         {
             byte[] iv = new byte[16];

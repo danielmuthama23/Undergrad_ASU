@@ -8,11 +8,13 @@ namespace Providers
 {
     public static class Handler
     {
+        // vars to store per session
         public static string CurrentRole = null;
         public static string CurrentName = null;
         public static string CurrentEmail = null;
         public static string VerifyImageCode = getVerifyCode();
 
+        // verify code gen for 5 char code
         public static string getVerifyCode()
         {
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -32,6 +34,7 @@ namespace Providers
         }
     }
 
+    // handler to use with formsauth that refs xml files
     public class CustomRoleProvider : RoleProvider
     {
 

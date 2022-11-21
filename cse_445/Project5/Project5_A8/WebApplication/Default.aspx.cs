@@ -11,10 +11,14 @@ namespace WebApplication
 {
     public partial class _Default : Page
     {
+        // handle page load
         protected void Page_Load(object sender, EventArgs e)
         {
             //System.Diagnostics.Debug.WriteLine("here");
             //System.Diagnostics.Debug.WriteLine(User.IsInRole("Member"));
+
+            // display active users count
+            ActiveUsers.Text = "Number of active users: " + Application["numofusers"].ToString();
 
             // get the current role from xml files and add to custom role provider
             if (User.Identity.IsAuthenticated)
@@ -47,6 +51,7 @@ namespace WebApplication
                         }
                     }
 
+                    // close file
                     stream.Close();
                 }
             }

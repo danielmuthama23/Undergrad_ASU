@@ -21,6 +21,14 @@
         <br />
         <asp:Button ID="AddStaffButton" runat="server" Text="Add Staff Member" OnClick="AddStaffButton_Click" />
         <asp:Label ID="StaffAddResponse" runat="server" Text=""></asp:Label>
+
+        <h4>Get Weather Info</h4>
+        <h4>This service gets the five day weather forecast based on a given zipcode and displays it below.</h4>
+        <asp:Label ID="Label6" runat="server" Text="Enter Zipcode: "></asp:Label>
+        <asp:TextBox ID="ZipcodeInput" runat="server" placeholder="85282"></asp:TextBox>
+        <asp:Button ID="Button2" runat="server" Text="Get Weather" OnClick="GetWeather_Click" />
+        <h5>Five Day Forecast</h5>
+        <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
     <% } else { %>
         <h3>You do not have access to this page.</h3>
         <p>Please login with staff credentials to view this page</p>

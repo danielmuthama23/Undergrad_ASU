@@ -19,6 +19,14 @@ namespace WebApplication
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["numofusers"] = 0;
+        }
+
+        // add +1 to for all application users
+        // done by ethan robinson
+        void Session_Start(object sender, EventArgs e)
+        {
+            Application["numofusers"] = (int)Application["numofusers"] + 1;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace WebApplication
 {
     public partial class Register : Page
     {
+        // load captcha at page load
         protected void Page_Load(object sender, EventArgs e)
         {
             string VERIFIER_API_LINK = "https://venus.sod.asu.edu/WSRepository/Services/ImageVerifier/Service.svc/GetImage/";
@@ -21,6 +22,7 @@ namespace WebApplication
             VerifierImage.ImageUrl = VERIFIER_API_LINK + Handler.VerifyImageCode;
         }
 
+        // handle register button click
         protected void RegisterButton_Click(object sender, EventArgs e)
         {
             if (

@@ -16,6 +16,7 @@ namespace WebApplication
 
         }
 
+        // handle logout button click
         protected void LogButton_Click(object sender, EventArgs e)
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)

@@ -15,6 +15,7 @@ namespace WebApplication
     {
         private string role = null;
 
+        // load captcha image on page load
         protected void Page_Load(object sender, EventArgs e)
         {
             string VERIFIER_API_LINK = "https://venus.sod.asu.edu/WSRepository/Services/ImageVerifier/Service.svc/GetImage/";
@@ -22,6 +23,7 @@ namespace WebApplication
             VerifierImage.ImageUrl = VERIFIER_API_LINK + Handler.VerifyImageCode;
         }
 
+        // handle login button click
         protected void LoginButton_Click(object sender, EventArgs e)
         {
             if (

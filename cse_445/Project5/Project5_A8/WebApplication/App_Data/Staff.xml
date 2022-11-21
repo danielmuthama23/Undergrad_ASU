@@ -1,15 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StaffMembers>
-	<Staff>
-	    <Username>tfichiera3</Username>
-        <EncryptedPass>3vArjx5QSslBjjXvbsc5JA==</EncryptedPass>
-        <FullName>Tyler Jake</FullName>
-        <Email>tyler@asu.edu</Email>
-	</Staff>
-	<Staff>
-		<Username>TA</Username>
-		<EncryptedPass>Fl/v62Gyl8/V8cX/VNiTlA==</EncryptedPass>
-		<FullName>TA Demo</FullName>
-		<Email>ta@asu.edu</Email>
-	</Staff>
+  <Staff>
+    <Username>tfichiera3</Username>
+    <EncryptedPass>3vArjx5QSslBjjXvbsc5JA==</EncryptedPass>
+    <FullName>Tyler Jake</FullName>
+    <Email>tyler@asu.edu</Email>
+  </Staff>
+  <Staff>
+    <Username>TA</Username>
+    <EncryptedPass>Fl/v62Gyl8/V8cX/VNiTlA==</EncryptedPass>
+    <FullName>TA Demo</FullName>
+    <Email>ta@asu.edu</Email>
+  </Staff>
+  <Member>
+    <Username>admin1</Username>
+    <EncryptedPass>3vArjx5QSslBjjXvbsc5JA==</EncryptedPass>
+    <FullName>Admin Test</FullName>
+    <Email>admin1@asu.edu</Email>
+  </Member>
+  <Member>
+    <Username>teststaff2</Username>
+    <EncryptedPass>3vArjx5QSslBjjXvbsc5JA==</EncryptedPass>
+    <FullName>Test Staff 2</FullName>
+    <Email>test2@asu.edu</Email>
+  </Member>
 </StaffMembers>
