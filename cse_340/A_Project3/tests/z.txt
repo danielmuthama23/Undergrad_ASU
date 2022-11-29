@@ -1,0 +1,12 @@
+x;
+{
+x=1;
+SWITCH x {
+CASE 1: {
+output x;
+x=2;
+}
+CASE 2: {
+output x;
+}}}
+0
