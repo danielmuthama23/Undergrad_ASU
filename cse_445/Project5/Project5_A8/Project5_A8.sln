@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{0D45CA3B-0554-42BE-BC63-85CBF20D9535}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54D2AE6E-F5F3-4820-A7BA-F3805D62D27C} = {54D2AE6E-F5F3-4820-A7BA-F3805D62D27C}
+		{C136A254-6A18-4E96-A288-265F49B7DEFB} = {C136A254-6A18-4E96-A288-265F49B7DEFB}
+		{E0A89FDF-26E4-492C-B751-7E3DB3B33526} = {E0A89FDF-26E4-492C-B751-7E3DB3B33526}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crypt", "Crypt\Crypt.csproj", "{723E768B-8DD2-4626-BD73-9746F438D23F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyConverter", "CurrencyConverter\CurrencyConverter.csproj", "{E0A89FDF-26E4-492C-B751-7E3DB3B33526}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextTranslator", "TextTranslator\TextTranslator.csproj", "{C136A254-6A18-4E96-A288-265F49B7DEFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherService", "WeatherService\WeatherService.csproj", "{54D2AE6E-F5F3-4820-A7BA-F3805D62D27C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D45CA3B-0554-42BE-BC63-85CBF20D9535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D45CA3B-0554-42BE-BC63-85CBF20D9535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D45CA3B-0554-42BE-BC63-85CBF20D9535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D45CA3B-0554-42BE-BC63-85CBF20D9535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{723E768B-8DD2-4626-BD73-9746F438D23F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{723E768B-8DD2-4626-BD73-9746F438D23F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{723E768B-8DD2-4626-BD73-9746F438D23F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{723E768B-8DD2-4626-BD73-9746F438D23F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0A89FDF-26E4-492C-B751-7E3DB3B33526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0A89FDF-26E4-492C-B751-7E3DB3B33526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0A89FDF-26E4-492C-B751-7E3DB3B33526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0A89FDF-26E4-492C-B751-7E3DB3B33526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C136A254-6A18-4E96-A288-265F49B7DEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C136A254-6A18-4E96-A288-265F49B7DEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C136A254-6A18-4E96-A288-265F49B7DEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C136A254-6A18-4E96-A288-265F49B7DEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54D2AE6E-F5F3-4820-A7BA-F3805D62D27C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D2AE6E-F5F3-4820-A7BA-F3805D62D27C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D2AE6E-F5F3-4820-A7BA-F3805D62D27C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D2AE6E-F5F3-4820-A7BA-F3805D62D27C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F158E99B-447A-4930-BD77-BCCA2203B912}
+	EndGlobalSection
+EndGlobal

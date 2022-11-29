@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Members>
+  <Member>
+    <Username>tfichiera2</Username>
+    <EncryptedPass>3vArjx5QSslBjjXvbsc5JA==</EncryptedPass>
+    <FullName>Tyler Jake</FullName>
+    <Email>tylerfich@gmail.com</Email>
+  </Member>
+  <Member>
+    <Username>member1</Username>
+    <EncryptedPass>3vArjx5QSslBjjXvbsc5JA==</EncryptedPass>
+    <FullName>Member Test</FullName>
+    <Email>member1@asu.edu</Email>
+  </Member>
+</Members>
