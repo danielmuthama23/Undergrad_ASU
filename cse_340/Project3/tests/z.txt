@@ -1,17 +1,82 @@
-x;
+x, y, a, b;
 {
-    x=12;
-    SWITCH x {
-        CASE 1: {
-            output x;
-            x=2;
+    x=1;
+    x=2;
+    FOR ( a = 0; a < 10; a = a + 1; ) {
+        SWITCH a {
+            CASE 0: {
+                x = x+1;  output x;
+                y = y+1;
+            }
+            CASE 1: {
+                x = x+2;  output x;
+                y = y+2;
+            }
+            CASE 2: {
+                x = x+2;  output x;
+                y = y+2;
+            }
+            DEFAULT: {
+                x = x+3;  output x;
+                y = y+3;
+            }
         }
-        CASE 2: {
-            output x;
+          SWITCH a {
+            CASE 0: {
+                x = x+1;  output x;
+                y = y+1;
+            }
+            CASE 1: {
+                x = x+2;  output x;
+                y = y+2;
+            }
+            CASE 2: {
+                x = x+2;  output x;
+                y = y+2;
+            }
+            DEFAULT: {
+        FOR ( b = 0; b < 10; b = b + 1; ) {
+        SWITCH b {
+            CASE 0: {
+                x = x+1;
+                y = y+1;  output x;
+            }
+            CASE 1: {
+                x = x+2;
+                y = y+2;  output x;
+            }
+            CASE 2: {
+                x = x+2;
+                y = y+2;  output x;
+            }
+            DEFAULT: {
+                x = x+3;
+                y = y+3;  output x;
+            }
         }
-        DEFAULT: {
-            output x;
+          SWITCH b {
+            CASE 0: {
+                x = x+1;
+                y = y+1;  output x;
+            }
+            CASE 1: {
+                x = x+2;
+                y = y+2;  output x;
+            }
+            CASE 2: {
+                x = x+2;
+                y = y+2;  output x;
+            }
+            DEFAULT: {
+                x = x+3;
+                y = y+3;  output x;
+            }
         }
+        output x;
+    }
+            }
+        }
+        output x;
     }
 }
-0
+2

@@ -1,3 +1,7 @@
+/*
+ * CSE 340 Project 3 - parser.h
+ * Tyler Fichiera
+ */
 #include "lexer.h"
 #include "execute.h"
 #include <map>

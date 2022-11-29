@@ -1,3 +1,7 @@
+/*
+ * CSE 340 Project 3 - parser.cc
+ * Tyler Fichiera
+ */
 #include "parser.h"
 #include "execute.h"
 #include <iostream>
@@ -231,7 +235,7 @@ InstructionNode* Parser::parse_switch_stmt() {
             intermediate->cjmp_inst.target = c.body;
             intermediate->cjmp_inst.opernd1_index = get_mem(id);
             intermediate->cjmp_inst.opernd2_index = switch_case_mem;
-            if (tmp) {
+            if (tmp != NULL) {
                 tmp->next = intermediate;
             } else {
                 stmt = intermediate;
@@ -418,7 +422,7 @@ int Parser::get_mem(Token token) {
 
 void Parser::append_to_end(InstructionNode* in, InstructionNode*& list) {
     auto eol = list;
-    while (eol->next) {
+    while (eol->next != NULL) {
         if (eol->type == CJMP)
             eol = eol->cjmp_inst.target;
         else
