@@ -1,0 +1,17 @@
+x;
+{
+    x=12;
+    SWITCH x {
+        CASE 1: {
+            output x;
+            x=2;
+        }
+        CASE 2: {
+            output x;
+        }
+        DEFAULT: {
+            output x;
+        }
+    }
+}
+0
