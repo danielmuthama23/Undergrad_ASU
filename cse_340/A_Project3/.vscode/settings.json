@@ -7,6 +7,8 @@
         "iostream": "cpp",
         "new": "cpp",
         "complex": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "__locale": "cpp",
+        "ios": "cpp"
     }
 }

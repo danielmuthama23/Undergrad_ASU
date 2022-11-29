@@ -47,18 +47,20 @@ class Parser {
         vector<string> parse_id_list(vector<string>);
         InstructionNode* parse_body();
         InstructionNode* parse_stmt_list();
-
+        InstructionNode* parse_assign_stmt();
         InstructionNode* parse_output_stmt();
         InstructionNode* parse_input_stmt();
-        InstructionNode* parse_while_stmt();
+        InstructionNode* parse_while_stmt(); // needs some work
         InstructionNode* parse_if_stmt();
         InstructionNode* parse_switch_stmt();
         InstructionNode* parse_for_stmt();
 
+        Token parse_primary();
+        InstructionNode* parse_condition();
         vector<SwitchIntermediateData> parse_switch_cases();
 
         // ?
-        InstructionNode* parse_instruction();
+        //InstructionNode* parse_instruction();
         int get_current_memory_addr();
         
         void parse_inputs();
