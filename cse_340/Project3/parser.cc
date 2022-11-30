@@ -227,7 +227,7 @@ InstructionNode* Parser::parse_switch_stmt() {
     bool has_default = false;
     for (SwitchCase c : cases) {
         if (!c.is_default) {
-            InstructionNode* intermediate = new InstructionNode;
+            InstructionNode* intermediate = new InstructionNode{};
             int switch_case_mem = get_mem(c.token);
             append_to_end(end_noop, c.body);
             intermediate->type = CJMP;
