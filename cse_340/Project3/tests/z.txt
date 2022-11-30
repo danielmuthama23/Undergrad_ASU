@@ -16,10 +16,6 @@ x, y, a, b;
                 x = x+2;  output x;
                 y = y+2;
             }
-            DEFAULT: {
-                x = x+3;  output x;
-                y = y+3;
-            }
         }
           SWITCH a {
             CASE 0: {

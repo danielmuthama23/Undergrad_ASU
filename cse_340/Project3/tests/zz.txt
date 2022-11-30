@@ -1,0 +1,13 @@
+i, j;
+{
+i = 1;
+SWITCH i {
+    CASE 1: {
+        output i;
+    }
+}
+
+j = 4;
+output j;
+}
+1

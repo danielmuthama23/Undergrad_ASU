@@ -257,7 +257,7 @@ InstructionNode* Parser::parse_switch_stmt() {
 // case → CASE NUM COLON body
 // default_case → DEFAULT COLON body
 vector<SwitchCase> Parser::parse_switch_cases() {
-    std::vector<struct SwitchCase> cases;
+    vector<struct SwitchCase> cases;
     Token t;
 
     do {
