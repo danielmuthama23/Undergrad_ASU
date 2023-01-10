@@ -11,7 +11,10 @@ An archive of all my code submitted for undergrad
 | CSE 240 | Intro to Programming Languages            | Fall '21   | C, C++, Scheme    |
 | CSE 310 | Data Structures and Algorithms            | Summer '22 | C++               |
 | CSE 330 | Operating Systems                         | Fall '22   | C                 |
+| CSE 335 | Principles of Mobile App Development      | Spring '23 | Swift             |
 | CSE 340 | Principles of Programming Languages       | Fall '22   | C++               |
 | CSE 360 | Intro to Software Engineering             | Spring '22 | Java              |
 | CSE 365 | Information Assurance                     | Spring '22 | C, Python, Shell  |
 | CSE 445 | Distributed Software Development          | Fall '22   | C#                |
+| CSE 446 | Software Integration and Engineering      | Spring '23 | C#                |
+| CSE 464 | Software QA and Testing                   | Spring '23 | Java              |
