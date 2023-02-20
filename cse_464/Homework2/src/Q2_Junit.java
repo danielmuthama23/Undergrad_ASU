@@ -17,7 +17,7 @@ class Q2_Junit {
 		try {
 			Assignment2.Validate();
 		} catch (NoSuchElementException e) {
-			assertNotNull("Invalid card number, need to have 8 digits");
+			assertNotNull("Invalid card number, need to have 16 digits");
 		}
 		System.setIn(stdin);
 	}
@@ -31,7 +31,7 @@ class Q2_Junit {
 		try {
 			Assignment2.Validate();
 		} catch (NoSuchElementException e) {
-			assertNotNull("Invalid card number, need to have 8 digits");
+			assertNotNull("Invalid card number, need to have 16 digits");
 		}
 		System.setIn(stdin);
 	}
@@ -45,7 +45,7 @@ class Q2_Junit {
 		try {
 			Assignment2.Validate();
 		} catch (NoSuchElementException e) {
-			assertNotNull("Invalid card number, need to have 8 digits");
+			assertNotNull("Invalid card number, need to have 16 digits");
 		}
 		System.setIn(stdin);
 	}
@@ -63,6 +63,7 @@ class Q2_Junit {
 	@Test
 	void test_5() {
 		// (finalSum % 10 = 0)
+		// this one works since the finalSum happens to still end in a 0 despite the incorrect calculation of sum2
 		String data = "4539602896568891";
 		InputStream stdin = System.in;
 		System.setIn(new ByteArrayInputStream(data.getBytes()));
