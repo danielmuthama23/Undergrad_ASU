@@ -11,5 +11,4 @@ struct City: Identifiable {
     var id = UUID()
     var name = String()
     var image = String("sample-city") // same for all cities
-    var description = String()
 }

@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Lab4
+//  Lab5
 //
 //  Created by Tyler Fichiera on 2/28/23.
 //
@@ -14,7 +14,6 @@ struct ContentView: View {
     @State var showDeleteAlert = false
     
     @State var newCityName = String()
-    @State var newCityDescription = String()
     
     @State var deleteCityName = String()
     
@@ -22,7 +21,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(cityViewModel.cities, id: \.id) { city in
-                    NavigationLink(destination: CityDetailView(cityName: city.name, cityImage: city.image, cityDescription: city.description)) {
+                    NavigationLink(destination: CityDetailView(cityName: city.name, cityImage: city.image)) {
                         HStack {
                             Image(city.image)
                                 .resizable()
@@ -54,19 +53,16 @@ struct ContentView: View {
                 }
                 .alert("Add City", isPresented: $showAddAlert, actions: {
                     TextField("Name", text: $newCityName)
-                    TextField("Description", text: $newCityDescription)
                     
                     Button("Add") {
-                        let newCity = City(name: newCityName, description: newCityDescription)
+                        let newCity = City(name: newCityName)
                         cityViewModel.add(city: newCity)
                         
                         newCityName = String()
-                        newCityDescription = String()
                         showAddAlert = false
                     }
                     Button("Cancel", role: .cancel) {
                         newCityName = String()
-                        newCityDescription = String()
                         showAddAlert = false
                     }
                 }, message: {

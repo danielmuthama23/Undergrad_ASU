@@ -9,13 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationView {
+            VStack {
+                Spacer()
+                NavigationLink("Enter Data") {
+                    DataView()
+                }
+                Spacer()
+                NavigationLink("View My Health") {}
+                Spacer()
+                NavigationLink("Am I At Risk?") {}
+                Spacer()
+            }
+            .padding()
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Personal Health Monitoring System")
+        }.navigationViewStyle(.stack)
     }
 }
 
