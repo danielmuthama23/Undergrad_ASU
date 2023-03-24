@@ -12,6 +12,10 @@
 		A94198E329B6C67900D85F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A94198E229B6C67900D85F07 /* Assets.xcassets */; };
 		A94198E629B6C67900D85F07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A94198E529B6C67900D85F07 /* Preview Assets.xcassets */; };
 		A94198ED29B6C8B700D85F07 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94198EC29B6C8B700D85F07 /* DataView.swift */; };
+		A991BE0729CAAF9B00CFD0D3 /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991BE0629CAAF9B00CFD0D3 /* HealthView.swift */; };
+		A991BE0929CAAFAE00CFD0D3 /* RiskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991BE0829CAAFAE00CFD0D3 /* RiskView.swift */; };
+		A991BE0D29CAB5E000CFD0D3 /* HealthInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991BE0C29CAB5E000CFD0D3 /* HealthInput.swift */; };
+		A991BE1029CAB6E900CFD0D3 /* HealthDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991BE0F29CAB6E900CFD0D3 /* HealthDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,10 @@
 		A94198E229B6C67900D85F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A94198E529B6C67900D85F07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A94198EC29B6C8B700D85F07 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		A991BE0629CAAF9B00CFD0D3 /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
+		A991BE0829CAAFAE00CFD0D3 /* RiskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskView.swift; sourceTree = "<group>"; };
+		A991BE0C29CAB5E000CFD0D3 /* HealthInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthInput.swift; sourceTree = "<group>"; };
+		A991BE0F29CAB6E900CFD0D3 /* HealthDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +62,11 @@
 			isa = PBXGroup;
 			children = (
 				A94198DE29B6C67800D85F07 /* Homework1App.swift */,
-				A94198E029B6C67800D85F07 /* ContentView.swift */,
+				A991BE0A29CAB58600CFD0D3 /* View */,
+				A991BE0B29CAB59C00CFD0D3 /* Model */,
+				A991BE0E29CAB62900CFD0D3 /* ViewModel */,
 				A94198E229B6C67900D85F07 /* Assets.xcassets */,
 				A94198E429B6C67900D85F07 /* Preview Content */,
-				A94198EC29B6C8B700D85F07 /* DataView.swift */,
 			);
 			path = Homework1;
 			sourceTree = "<group>";
@@ -68,6 +77,33 @@
 				A94198E529B6C67900D85F07 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A991BE0A29CAB58600CFD0D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A94198E029B6C67800D85F07 /* ContentView.swift */,
+				A94198EC29B6C8B700D85F07 /* DataView.swift */,
+				A991BE0629CAAF9B00CFD0D3 /* HealthView.swift */,
+				A991BE0829CAAFAE00CFD0D3 /* RiskView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A991BE0B29CAB59C00CFD0D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A991BE0C29CAB5E000CFD0D3 /* HealthInput.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A991BE0E29CAB62900CFD0D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A991BE0F29CAB6E900CFD0D3 /* HealthDataViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +176,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A991BE0D29CAB5E000CFD0D3 /* HealthInput.swift in Sources */,
+				A991BE0929CAAFAE00CFD0D3 /* RiskView.swift in Sources */,
+				A991BE0729CAAF9B00CFD0D3 /* HealthView.swift in Sources */,
+				A991BE1029CAB6E900CFD0D3 /* HealthDataViewModel.swift in Sources */,
 				A94198ED29B6C8B700D85F07 /* DataView.swift in Sources */,
 				A94198E129B6C67800D85F07 /* ContentView.swift in Sources */,
 				A94198DF29B6C67800D85F07 /* Homework1App.swift in Sources */,

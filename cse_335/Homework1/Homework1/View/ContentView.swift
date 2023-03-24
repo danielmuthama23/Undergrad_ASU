@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var dataViewModel = HealthDataViewModel()
+    
     var body: some View {
         NavigationView {
             VStack {
                 Spacer()
                 NavigationLink("Enter Data") {
-                    DataView()
+                    DataView(dataViewModel: dataViewModel)
                 }
                 Spacer()
-                NavigationLink("View My Health") {}
+                NavigationLink("View My Health") {
+                    HealthView(dataViewModel: dataViewModel)
+                }
                 Spacer()
-                NavigationLink("Am I At Risk?") {}
+                NavigationLink("Am I At Risk?") {
+                    RiskView(dataViewModel: dataViewModel)
+                }
                 Spacer()
             }
             .padding()
