@@ -20,7 +20,7 @@ let all=0
 
 mkdir -p ./output
 
-for test_file in $(find ./tests2 -type f -name "*.txt" | sort); do
+for test_file in $(find ./tests -type f -name "*.txt" | sort); do
     all=$((all+1))
     name=`basename ${test_file} .txt`
     expected_file=${test_file}.expected
