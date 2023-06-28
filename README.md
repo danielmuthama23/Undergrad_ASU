@@ -1,5 +1,5 @@
 # Undergraduate Work at Arizona State University
-### BS, Computer Science (Software Engineering) | 2020-2024
+### Bachelor of Science - BS, Computer Science | 2020-2023
 
 An archive of all my code submitted for undergrad
 
