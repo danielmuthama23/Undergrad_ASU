@@ -15,6 +15,9 @@ An archive of all my code submitted for undergrad
 | CSE 340 | Principles of Programming Languages       | Fall '22   | C++               |
 | CSE 360 | Intro to Software Engineering             | Spring '22 | Java              |
 | CSE 365 | Information Assurance                     | Spring '22 | C, Python, Shell  |
+| CSE 412 | Database Management                       | Fall '23   |                   |
 | CSE 445 | Distributed Software Development          | Fall '22   | C#                |
 | CSE 446 | Software Integration and Engineering      | Spring '23 | C#, Python        |
 | CSE 464 | Software QA and Testing                   | Spring '23 | Java              |
+| CSE 475 | Foundtations of Machine Learning          | Fall '23   |                   |
+| CSE 572 | Data Mining                               | Fall '23   |                   |
