@@ -20,4 +20,4 @@ An archive of all my code submitted for undergrad
 | CSE 446 | Software Integration and Engineering      | Spring '23 | C#, Python        |
 | CSE 464 | Software QA and Testing                   | Spring '23 | Java              |
 | CSE 475 | Foundations of Machine Learning           | Fall '23   |                   |
-| CSE 572 | Data Mining                               | Fall '23   |                   |
+| CSE 572 | Data Mining                               | Fall '23   | Python            |
